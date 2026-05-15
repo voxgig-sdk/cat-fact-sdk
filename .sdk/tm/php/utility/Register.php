@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// CatFact SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+CatFactUtility::setRegistrar(function (CatFactUtility $u): void {
+    $u->clean = [CatFactClean::class, 'call'];
+    $u->done = [CatFactDone::class, 'call'];
+    $u->make_error = [CatFactMakeError::class, 'call'];
+    $u->feature_add = [CatFactFeatureAdd::class, 'call'];
+    $u->feature_hook = [CatFactFeatureHook::class, 'call'];
+    $u->feature_init = [CatFactFeatureInit::class, 'call'];
+    $u->fetcher = [CatFactFetcher::class, 'call'];
+    $u->make_fetch_def = [CatFactMakeFetchDef::class, 'call'];
+    $u->make_context = [CatFactMakeContext::class, 'call'];
+    $u->make_options = [CatFactMakeOptions::class, 'call'];
+    $u->make_request = [CatFactMakeRequest::class, 'call'];
+    $u->make_response = [CatFactMakeResponse::class, 'call'];
+    $u->make_result = [CatFactMakeResult::class, 'call'];
+    $u->make_point = [CatFactMakePoint::class, 'call'];
+    $u->make_spec = [CatFactMakeSpec::class, 'call'];
+    $u->make_url = [CatFactMakeUrl::class, 'call'];
+    $u->param = [CatFactParam::class, 'call'];
+    $u->prepare_auth = [CatFactPrepareAuth::class, 'call'];
+    $u->prepare_body = [CatFactPrepareBody::class, 'call'];
+    $u->prepare_headers = [CatFactPrepareHeaders::class, 'call'];
+    $u->prepare_method = [CatFactPrepareMethod::class, 'call'];
+    $u->prepare_params = [CatFactPrepareParams::class, 'call'];
+    $u->prepare_path = [CatFactPreparePath::class, 'call'];
+    $u->prepare_query = [CatFactPrepareQuery::class, 'call'];
+    $u->result_basic = [CatFactResultBasic::class, 'call'];
+    $u->result_body = [CatFactResultBody::class, 'call'];
+    $u->result_headers = [CatFactResultHeaders::class, 'call'];
+    $u->transform_request = [CatFactTransformRequest::class, 'call'];
+    $u->transform_response = [CatFactTransformResponse::class, 'call'];
+});

@@ -1,0 +1,24 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: fact: {
+    path: "/facts": {
+      op: list: method: *GET
+    }
+    path: "/facts/random": {
+      action: "random": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: user: {
+    path: "/users": {
+      op: list: method: *GET
+    }
+  }
+
+}

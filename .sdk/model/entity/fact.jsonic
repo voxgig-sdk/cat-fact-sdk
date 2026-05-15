@@ -1,0 +1,157 @@
+# Entity: fact
+
+main: kit: entity: fact: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "created_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "deleted"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "text"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "upvote"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "used"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "user"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "user_upvoted"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "fact"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "amount"
+                orig: "amount"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "cat"
+                kind: "query"
+                name: "animal_type"
+                orig: "animal_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/facts"
+          parts: [
+            "facts"
+          ]
+          select: {
+            exist: [
+              "amount"
+              "animal_type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "amount"
+                orig: "amount"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "cat"
+                kind: "query"
+                name: "animal_type"
+                orig: "animal_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/facts/random"
+          parts: [
+            "facts"
+            "random"
+          ]
+          select: {
+            "$action": "random"
+            exist: [
+              "amount"
+              "animal_type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
