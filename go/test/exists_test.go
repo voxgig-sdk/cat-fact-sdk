@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/cat-fact-sdk"
+	sdk "github.com/voxgig-sdk/cat-fact-sdk/go"
 )
 
 func TestExists(t *testing.T) {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/cat-fact-sdk"
-	"github.com/voxgig-sdk/cat-fact-sdk/core"
+	sdk "github.com/voxgig-sdk/cat-fact-sdk/go"
+	"github.com/voxgig-sdk/cat-fact-sdk/go/core"
 )
 
 func TestFactDirect(t *testing.T) {

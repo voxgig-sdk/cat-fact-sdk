@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/cat-fact-sdk/core"
+import "github.com/voxgig-sdk/cat-fact-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

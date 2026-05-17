@@ -1,10 +1,10 @@
 package voxgigcatfactsdk
 
 import (
-	"github.com/voxgig-sdk/cat-fact-sdk/core"
-	"github.com/voxgig-sdk/cat-fact-sdk/entity"
-	"github.com/voxgig-sdk/cat-fact-sdk/feature"
-	_ "github.com/voxgig-sdk/cat-fact-sdk/utility"
+	"github.com/voxgig-sdk/cat-fact-sdk/go/core"
+	"github.com/voxgig-sdk/cat-fact-sdk/go/entity"
+	"github.com/voxgig-sdk/cat-fact-sdk/go/feature"
+	_ "github.com/voxgig-sdk/cat-fact-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
