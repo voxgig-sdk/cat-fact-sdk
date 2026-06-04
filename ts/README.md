@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { CatFactSDK } from 'cat-fact'
 
-const client = new CatFactSDK({
-  apikey: process.env.CAT-FACT_APIKEY,
-})
+const client = new CatFactSDK({})
 ```
 
 ### 2. List facts
@@ -94,7 +92,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new CatFactSDK({ apikey: '...' })
+const client = new CatFactSDK()
 const testClient = client.tester()
 ```
 
@@ -130,7 +128,6 @@ const logger = {
 }
 
 const client = new CatFactSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -141,7 +138,6 @@ Create a `.env.local` file at the project root:
 
 ```
 CAT-FACT_TEST_LIVE=TRUE
-CAT-FACT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -159,7 +155,6 @@ cd ts && npm test
 
 ```ts
 new CatFactSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -170,7 +165,6 @@ new CatFactSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

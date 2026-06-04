@@ -99,14 +99,12 @@ def _fact_direct_setup(mockres):
     env = runner.env_override({
         "CATFACT_TEST_FACT_ENTID": {},
         "CATFACT_TEST_LIVE": "FALSE",
-        "CATFACT_APIKEY": "NONE",
     })
 
     live = env.get("CATFACT_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("CATFACT_APIKEY"),
         }
         client = CatFactSDK(merged_opts)
         return {

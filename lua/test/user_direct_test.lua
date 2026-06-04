@@ -63,14 +63,12 @@ function user_direct_setup(mockres)
   local env = runner.env_override({
     ["CATFACT_TEST_USER_ENTID"] = {},
     ["CATFACT_TEST_LIVE"] = "FALSE",
-    ["CATFACT_APIKEY"] = "NONE",
   })
 
   local live = env["CATFACT_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["CATFACT_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

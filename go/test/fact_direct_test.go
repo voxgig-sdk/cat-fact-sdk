@@ -164,14 +164,12 @@ func factDirectSetup(mockres any) *factDirectSetupResult {
 	env := envOverride(map[string]any{
 		"CATFACT_TEST_FACT_ENTID": map[string]any{},
 		"CATFACT_TEST_LIVE":    "FALSE",
-		"CATFACT_APIKEY":       "NONE",
 	})
 
 	live := env["CATFACT_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["CATFACT_APIKEY"],
 		}
 		client := sdk.NewCatFactSDK(mergedOpts)
 

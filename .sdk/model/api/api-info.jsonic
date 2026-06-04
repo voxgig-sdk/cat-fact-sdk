@@ -17,8 +17,27 @@ main: {
       ]
       title: "Cat Fact API"
       version: "1.0.0"
+      tagline: "Fetch random cat facts and user-submitted trivia from a free, no-auth public API"
+      homepage: "https://cat-fact.herokuapp.com"
+      docs_url: "https://alexwohlbruck.github.io/cat-facts/"
+      license_short: "Apache-2.0 (source project by Alex Wohlbruck)"
+      license_md: `- The upstream Cat Facts project by Alex Wohlbruck is published under the Apache-2.0 licence.
+- No licence is asserted on the API response data itself; treat facts as community-contributed content.
+- Attribution to the upstream project is appreciated when redistributing facts.
+- The public endpoint is best-effort and offered without warranty.`
+      about_md: `Cat Fact is a small public API that returns short feline trivia entries. It is the data side of the open-source [Cat Facts project by Alex Wohlbruck](https://github.com/alexwohlbruck/cat-facts), which also powers an SMS bot and a community submission flow.
+
+What you can pull from the API:
+
+- Random or listed cat facts, each with a text body and metadata.
+- User records associated with submitted facts.
+
+The service is hosted on Heroku at \`https://cat-fact.herokuapp.com\` and requires no authentication or API key. As a free hobby deployment it may sleep between requests or return transient errors, so clients should be resilient to retries.`
+      entity_desc: {
+        fact: "A single cat trivia entry — the primary resource served by the API, exposing the fact text along with submission metadata."
+        user: "A contributor account associated with submitted facts in the upstream Cat Facts project."
+      }
+      auth: false
     }
   }
-}
-
 }

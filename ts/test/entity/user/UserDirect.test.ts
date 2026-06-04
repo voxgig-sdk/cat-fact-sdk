@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'CATFACT_TEST_USER_ENTID': {},
     'CATFACT_TEST_LIVE': 'FALSE',
-    'CATFACT_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.CATFACT_TEST_LIVE
 
   if (live) {
     const client = new CatFactSDK({
-      apikey: env.CATFACT_APIKEY,
     })
 
     let idmap: any = env['CATFACT_TEST_USER_ENTID']
