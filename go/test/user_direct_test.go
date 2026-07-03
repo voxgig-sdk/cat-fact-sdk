@@ -93,12 +93,14 @@ func userDirectSetup(mockres any) *userDirectSetupResult {
 	env := envOverride(map[string]any{
 		"CATFACT_TEST_USER_ENTID": map[string]any{},
 		"CATFACT_TEST_LIVE":    "FALSE",
+		"CATFACT_APIKEY":       "NONE",
 	})
 
 	live := env["CATFACT_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["CATFACT_APIKEY"],
 		}
 		client := sdk.NewCatFactSDK(mergedOpts)
 

@@ -1,19 +1,8 @@
 # CatFact SDK
 
-Fetch random cat facts and user-submitted trivia from a free, no-auth public API
+Cat Fact API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Cat Fact API
-
-Cat Fact is a small public API that returns short feline trivia entries. It is the data side of the open-source [Cat Facts project by Alex Wohlbruck](https://github.com/alexwohlbruck/cat-facts), which also powers an SMS bot and a community submission flow.
-
-What you can pull from the API:
-
-- Random or listed cat facts, each with a text body and metadata.
-- User records associated with submitted facts.
-
-The service is hosted on Heroku at `https://cat-fact.herokuapp.com` and requires no authentication or API key. As a free hobby deployment it may sleep between requests or return transient errors, so clients should be resilient to retries.
 
 ## Try it
 
@@ -47,29 +36,31 @@ gem install cat-fact-sdk
 luarocks install cat-fact-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { CatFactSDK } from 'cat-fact'
 
-const client = new CatFactSDK({})
+const client = new CatFactSDK({
+  apikey: process.env.CAT-FACT_APIKEY,
+})
 
 // List all facts
 const facts = await client.Fact().list()
+console.log(facts.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Fact** | A single cat trivia entry — the primary resource served by the API, exposing the fact text along with submission metadata. | `/facts` |
-| **User** | A contributor account associated with submitted facts in the upstream Cat Facts project. | `/users` |
+| **Fact** |  | `/facts` |
+| **User** |  | `/users` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,17 +101,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from catfact_sdk import CatFactSDK
 
-client = CatFactSDK({})
+client = CatFactSDK({
+    "apikey": os.environ.get("CAT-FACT_APIKEY"),
+})
 
 # List all facts
-facts, err = client.Fact(None).list(None, None)
+facts, err = client.Fact().list()
+print(facts)
 
 # Load a specific fact
-fact, err = client.Fact(None).load(
-    {"id": "example_id"}, None
-)
+fact, err = client.Fact().load({"id": "example_id"})
+print(fact)
 ```
 
 ### PHP
@@ -129,15 +123,17 @@ fact, err = client.Fact(None).load(
 <?php
 require_once 'catfact_sdk.php';
 
-$client = new CatFactSDK([]);
+$client = new CatFactSDK([
+    "apikey" => getenv("CAT-FACT_APIKEY"),
+]);
 
 // List all facts
-[$facts, $err] = $client->Fact(null)->list(null, null);
+[$facts, $err] = $client->Fact()->list();
+print_r($facts);
 
 // Load a specific fact
-[$fact, $err] = $client->Fact(null)->load(
-    ["id" => "example_id"], null
-);
+[$fact, $err] = $client->Fact()->load(["id" => "example_id"]);
+print_r($fact);
 ```
 
 ### Golang
@@ -145,10 +141,13 @@ $client = new CatFactSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/cat-fact-sdk/go"
 
-client := sdk.NewCatFactSDK(map[string]any{})
+client := sdk.NewCatFactSDK(map[string]any{
+    "apikey": os.Getenv("CAT-FACT_APIKEY"),
+})
 
 // List all facts
 facts, err := client.Fact(nil).List(nil, nil)
+fmt.Println(facts)
 ```
 
 ### Ruby
@@ -156,15 +155,17 @@ facts, err := client.Fact(nil).List(nil, nil)
 ```ruby
 require_relative "CatFact_sdk"
 
-client = CatFactSDK.new({})
+client = CatFactSDK.new({
+  "apikey" => ENV["CAT-FACT_APIKEY"],
+})
 
 # List all facts
-facts, err = client.Fact(nil).list(nil, nil)
+facts, err = client.Fact().list
+puts facts
 
 # Load a specific fact
-fact, err = client.Fact(nil).load(
-  { "id" => "example_id" }, nil
-)
+fact, err = client.Fact().load({ "id" => "example_id" })
+puts fact
 ```
 
 ### Lua
@@ -172,15 +173,17 @@ fact, err = client.Fact(nil).load(
 ```lua
 local sdk = require("cat-fact_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CAT-FACT_APIKEY"),
+})
 
 -- List all facts
-local facts, err = client:Fact(nil):list(nil, nil)
+local facts, err = client:Fact():list()
+print(facts)
 
 -- Load a specific fact
-local fact, err = client:Fact(nil):load(
-  { id = "example_id" }, nil
-)
+local fact, err = client:Fact():load({ id = "example_id" })
+print(fact)
 ```
 
 ## Unit testing in offline mode
@@ -199,25 +202,21 @@ const result = await client.Fact().load({ id: 'test01' })
 ### Python
 
 ```python
-client = CatFactSDK.test(None, None)
-result, err = client.Fact(None).load(
-    {"id": "test01"}, None
-)
+client = CatFactSDK.test()
+result, err = client.Fact().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = CatFactSDK::test(null, null);
-[$result, $err] = $client->Fact(null)->load(
-    ["id" => "test01"], null
-);
+$client = CatFactSDK::test();
+[$result, $err] = $client->Fact()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Fact(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -226,19 +225,15 @@ result, err := client.Fact(nil).Load(
 ### Ruby
 
 ```ruby
-client = CatFactSDK.test(nil, nil)
-result, err = client.Fact(nil).load(
-  { "id" => "test01" }, nil
-)
+client = CatFactSDK.test
+result, err = client.Fact().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Fact(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Fact():load({ id = "test01" })
 ```
 
 ## How it works
@@ -342,16 +337,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Cat Fact API
-
-- Upstream: [https://cat-fact.herokuapp.com](https://cat-fact.herokuapp.com)
-- API docs: [https://alexwohlbruck.github.io/cat-facts/](https://alexwohlbruck.github.io/cat-facts/)
-
-- The upstream Cat Facts project by Alex Wohlbruck is published under the Apache-2.0 licence.
-- No licence is asserted on the API response data itself; treat facts as community-contributed content.
-- Attribution to the upstream project is appreciated when redistributing facts.
-- The public endpoint is best-effort and offered without warranty.
 
 ---
 

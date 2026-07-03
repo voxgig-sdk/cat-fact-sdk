@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'CAT_FACT_TEST_USER_ENTID': idmap,
     'CAT_FACT_TEST_LIVE': 'FALSE',
     'CAT_FACT_TEST_EXPLAIN': 'FALSE',
+    'CAT_FACT_APIKEY': 'NONE',
   })
 
   idmap = env['CAT_FACT_TEST_USER_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new CatFactSDK(merge([
       {
+        apikey: env.CAT_FACT_APIKEY,
       },
       extra
     ]))

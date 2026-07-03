@@ -96,6 +96,7 @@ function fact_basic_setup($extra)
         "CATFACT_TEST_FACT_ENTID" => $idmap,
         "CATFACT_TEST_LIVE" => "FALSE",
         "CATFACT_TEST_EXPLAIN" => "FALSE",
+        "CATFACT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -107,6 +108,7 @@ function fact_basic_setup($extra)
     if ($env["CATFACT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["CATFACT_APIKEY"],
             ],
             $extra ?? [],
         ]);

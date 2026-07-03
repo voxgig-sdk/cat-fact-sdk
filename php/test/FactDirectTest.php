@@ -113,12 +113,14 @@ function fact_direct_setup($mockres)
     $env = Runner::env_override([
         "CATFACT_TEST_FACT_ENTID" => [],
         "CATFACT_TEST_LIVE" => "FALSE",
+        "CATFACT_APIKEY" => "NONE",
     ]);
 
     $live = $env["CATFACT_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["CATFACT_APIKEY"],
         ];
         $client = new CatFactSDK($merged_opts);
         return [

@@ -102,6 +102,7 @@ def _fact_basic_setup(extra):
         "CATFACT_TEST_FACT_ENTID": idmap,
         "CATFACT_TEST_LIVE": "FALSE",
         "CATFACT_TEST_EXPLAIN": "FALSE",
+        "CATFACT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,6 +113,7 @@ def _fact_basic_setup(extra):
     if env.get("CATFACT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("CATFACT_APIKEY"),
             },
             extra or {},
         ])
