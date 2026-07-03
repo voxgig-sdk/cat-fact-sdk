@@ -10,7 +10,7 @@ The PHP SDK for the CatFact API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/cat-fact-sdk
+composer require voxgig-sdk/cat-fact
 ```
 
 

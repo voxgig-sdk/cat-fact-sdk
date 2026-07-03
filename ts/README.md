@@ -10,7 +10,7 @@ The TypeScript SDK for the CatFact API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install cat-fact
+npm install @voxgig-sdk/cat-fact
 ```
 ## Tutorial: your first API call
 

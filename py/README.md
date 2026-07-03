@@ -10,7 +10,7 @@ The Python SDK for the CatFact API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install cat-fact-sdk
+pip install voxgig-sdk-cat-fact
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The Lua SDK for the CatFact API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install cat-fact-sdk
+luarocks install voxgig-sdk-cat-fact
 ```
 
 If the module is not yet published, add the source directory to

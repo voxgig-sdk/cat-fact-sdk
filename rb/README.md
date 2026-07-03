@@ -10,13 +10,13 @@ The Ruby SDK for the CatFact API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install cat-fact-sdk
+gem install voxgig-sdk-cat-fact
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "cat-fact-sdk"
+gem "voxgig-sdk-cat-fact"
 ```
 
 Then run:
