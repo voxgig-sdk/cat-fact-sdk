@@ -50,16 +50,14 @@ class FactEntityTest extends TestCase
         $fact_ref01_ent = $client->Fact(null);
         $fact_ref01_match = [];
 
-        [$fact_ref01_list_result, $err] = $fact_ref01_ent->list($fact_ref01_match, null);
-        $this->assertNull($err);
+        $fact_ref01_list_result = $fact_ref01_ent->list($fact_ref01_match, null);
         $this->assertIsArray($fact_ref01_list_result);
 
         // LOAD
         $fact_ref01_match_dt0 = [
             "id" => $fact_ref01_data["id"],
         ];
-        [$fact_ref01_data_dt0_loaded, $err] = $fact_ref01_ent->load($fact_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $fact_ref01_data_dt0_loaded = $fact_ref01_ent->load($fact_ref01_match_dt0, null);
         $fact_ref01_data_dt0_load_result = Helpers::to_map($fact_ref01_data_dt0_loaded);
         $this->assertNotNull($fact_ref01_data_dt0_load_result);
         $this->assertEquals($fact_ref01_data_dt0_load_result["id"], $fact_ref01_data["id"]);

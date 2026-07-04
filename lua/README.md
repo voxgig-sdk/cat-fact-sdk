@@ -9,12 +9,9 @@ The Lua SDK for the CatFact API — an entity-oriented client using Lua conventi
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-cat-fact
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/cat-fact-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("cat-fact_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("CAT-FACT_APIKEY"),
+  apikey = os.getenv("CAT_FACT_APIKEY"),
 })
 ```
 
 ### 2. List facts
 
 ```lua
-local result, err = client:Fact():list()
+local result, err = client:fact():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +50,7 @@ end
 ### 3. Load a fact
 
 ```lua
-local result, err = client:Fact():load({ id = "example_id" })
+local result, err = client:fact():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +98,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CatFact():load({ id = "test01" })
+local result, err = client:fact():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -134,8 +131,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-CAT-FACT_TEST_LIVE=TRUE
-CAT-FACT_APIKEY=<your-key>
+CAT_FACT_TEST_LIVE=TRUE
+CAT_FACT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -259,7 +256,7 @@ API path: `/users`
 
 ### Fact
 
-Create an instance: `const fact = client.Fact()`
+Create an instance: `const fact = client.fact`
 
 #### Operations
 
@@ -286,19 +283,19 @@ Create an instance: `const fact = client.Fact()`
 #### Example: Load
 
 ```ts
-const fact = await client.Fact().load({ id: 'fact_id' })
+const fact = await client.fact.load({ id: 'fact_id' })
 ```
 
 #### Example: List
 
 ```ts
-const facts = await client.Fact().list()
+const facts = await client.fact.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -319,7 +316,7 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
@@ -394,11 +391,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local fact = client:fact()
+fact:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- fact:data_get() now returns the loaded fact data
+-- fact:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -43,8 +43,7 @@ class UserEntityTest < Minitest::Test
     user_ref01_ent = client.User(nil)
     user_ref01_match = {}
 
-    user_ref01_list_result, err = user_ref01_ent.list(user_ref01_match, nil)
-    assert_nil err
+    user_ref01_list_result = user_ref01_ent.list(user_ref01_match, nil)
     assert user_ref01_list_result.is_a?(Array)
 
   end

@@ -45,6 +45,7 @@ class FactEntity
     end
   end
 
+  # @return [Fact, Hash] the current Fact data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class FactEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Fact fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Fact.
+  #
+  # @param reqmatch [FactLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Fact, Hash] the loaded Fact; raises CatFactError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class FactEntity
 
 
   
+  # List Fact items matching the given filter.
+  #
+  # @param reqmatch [FactListMatch, Hash, nil] match filter (any subset of Fact fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Fact>, Array] the matching Fact items; raises CatFactError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

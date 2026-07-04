@@ -43,16 +43,14 @@ class FactEntityTest < Minitest::Test
     fact_ref01_ent = client.Fact(nil)
     fact_ref01_match = {}
 
-    fact_ref01_list_result, err = fact_ref01_ent.list(fact_ref01_match, nil)
-    assert_nil err
+    fact_ref01_list_result = fact_ref01_ent.list(fact_ref01_match, nil)
     assert fact_ref01_list_result.is_a?(Array)
 
     # LOAD
     fact_ref01_match_dt0 = {
       "id" => fact_ref01_data["id"],
     }
-    fact_ref01_data_dt0_loaded, err = fact_ref01_ent.load(fact_ref01_match_dt0, nil)
-    assert_nil err
+    fact_ref01_data_dt0_loaded = fact_ref01_ent.load(fact_ref01_match_dt0, nil)
     fact_ref01_data_dt0_load_result = Helpers.to_map(fact_ref01_data_dt0_loaded)
     assert !fact_ref01_data_dt0_load_result.nil?
     assert_equal fact_ref01_data_dt0_load_result["id"], fact_ref01_data["id"]

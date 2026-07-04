@@ -9,11 +9,9 @@ The Python SDK for the CatFact API — an entity-oriented client following Pytho
 
 
 ## Install
-```bash
-pip install voxgig-sdk-cat-fact
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/cat-fact-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -32,30 +30,30 @@ import os
 from catfact_sdk import CatFactSDK
 
 client = CatFactSDK({
-    "apikey": os.environ.get("CAT-FACT_APIKEY"),
+    "apikey": os.environ.get("CAT_FACT_APIKEY"),
 })
 ```
 
 ### 2. List facts
 
 ```python
-result, err = client.Fact().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.fact.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
 ### 3. Load a fact
 
 ```python
-result, err = client.Fact().load({"id": "example_id"})
-if err:
-    raise Exception(err)
-print(result)
+try:
+    result = client.fact.load({"id": "example_id"})
+    print(result)
+except Exception as err:
+    print(f"load failed: {err}")
 ```
 
 
@@ -66,29 +64,28 @@ print(result)
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -102,7 +99,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CatFactSDK.test()
 
-result, err = client.CatFact().load({"id": "test01"})
+result = client.fact.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -132,8 +129,8 @@ client = CatFactSDK({
 Create a `.env.local` file at the project root:
 
 ```
-CAT-FACT_TEST_LIVE=TRUE
-CAT-FACT_APIKEY=<your-key>
+CAT_FACT_TEST_LIVE=TRUE
+CAT_FACT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -179,8 +176,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Fact` | `(data) -> FactEntity` | Create a Fact entity instance. |
 | `User` | `(data) -> UserEntity` | Create a User entity instance. |
 
@@ -190,11 +187,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -204,8 +201,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -258,7 +259,7 @@ API path: `/users`
 
 ### Fact
 
-Create an instance: `const fact = client.Fact()`
+Create an instance: `const fact = client.fact`
 
 #### Operations
 
@@ -285,19 +286,19 @@ Create an instance: `const fact = client.Fact()`
 #### Example: Load
 
 ```ts
-const fact = await client.Fact().load({ id: 'fact_id' })
+const fact = await client.fact.load({ id: 'fact_id' })
 ```
 
 #### Example: List
 
 ```ts
-const facts = await client.Fact().list()
+const facts = await client.fact.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -318,7 +319,7 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
@@ -392,11 +393,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+fact = client.fact
+fact.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# fact.data_get() now returns the loaded fact data
+# fact.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

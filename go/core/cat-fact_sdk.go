@@ -245,11 +245,17 @@ func (sdk *CatFactSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// Fact returns a Fact entity bound to this client.
+// Idiomatic usage: client.Fact(nil).List(nil, nil) or
+// client.Fact(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CatFactSDK) Fact(data map[string]any) CatFactEntity {
 	return NewFactEntityFunc(sdk, data)
 }
 
 
+// User returns a User entity bound to this client.
+// Idiomatic usage: client.User(nil).List(nil, nil) or
+// client.User(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CatFactSDK) User(data map[string]any) CatFactEntity {
 	return NewUserEntityFunc(sdk, data)
 }

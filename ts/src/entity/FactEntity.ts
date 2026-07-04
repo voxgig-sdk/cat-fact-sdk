@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Fact,
+  FactLoadMatch,
+  FactListMatch,
+} from '../CatFactTypes'
 
 // TODO: needs Entity superclass
-class FactEntity extends CatFactEntityBase {
+class FactEntity extends CatFactEntityBase<Fact> {
 
   constructor(client: CatFactSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class FactEntity extends CatFactEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: FactLoadMatch, ctrl?: Control): Promise<Fact> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class FactEntity extends CatFactEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Fact> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: FactListMatch, ctrl?: Control): Promise<Fact[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class FactEntity extends CatFactEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Fact[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

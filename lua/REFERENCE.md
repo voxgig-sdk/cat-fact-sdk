@@ -88,7 +88,7 @@ same parameters as `direct()`.
 ## FactEntity
 
 ```lua
-local fact = client:Fact(nil)
+local fact = client:fact(nil)
 ```
 
 ### Fields
@@ -113,7 +113,7 @@ local fact = client:Fact(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Fact():list()
+local results, err = client:fact():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -121,7 +121,7 @@ local results, err = client:Fact():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Fact():load({ id = "fact_id" })
+local result, err = client:fact():load({ id = "fact_id" })
 ```
 
 ### Common Methods
@@ -157,7 +157,7 @@ Return the entity name.
 ## UserEntity
 
 ```lua
-local user = client:User(nil)
+local user = client:user(nil)
 ```
 
 ### Fields
@@ -177,7 +177,7 @@ local user = client:User(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:User():list()
+local results, err = client:user():list()
 ```
 
 ### Common Methods

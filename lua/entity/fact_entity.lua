@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch FactLoadMatch
+---@param ctrl? table
+---@return Fact
+---@return string? err
 function FactEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch FactListMatch
+---@param ctrl? table
+---@return Fact[]
+---@return string? err
 function FactEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

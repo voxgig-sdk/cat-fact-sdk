@@ -50,8 +50,7 @@ class UserEntityTest extends TestCase
         $user_ref01_ent = $client->User(null);
         $user_ref01_match = [];
 
-        [$user_ref01_list_result, $err] = $user_ref01_ent->list($user_ref01_match, null);
-        $this->assertNull($err);
+        $user_ref01_list_result = $user_ref01_ent->list($user_ref01_match, null);
         $this->assertIsArray($user_ref01_list_result);
 
     }

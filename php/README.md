@@ -9,9 +9,10 @@ The PHP SDK for the CatFact API — an entity-oriented client using PHP conventi
 
 
 ## Install
-```bash
-composer require voxgig-sdk/cat-fact
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/cat-fact-sdk/releases](https://github.com/voxgig-sdk/cat-fact-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,30 +27,35 @@ loading a specific record.
 require_once 'catfact_sdk.php';
 
 $client = new CatFactSDK([
-    "apikey" => getenv("CAT-FACT_APIKEY"),
+    "apikey" => getenv("CAT_FACT_APIKEY"),
 ]);
 ```
 
 ### 2. List facts
 
 ```php
-[$result, $err] = $client->Fact()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->fact()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
 ### 3. Load a fact
 
 ```php
-[$result, $err] = $client->Fact()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->fact()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +66,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +104,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = CatFactSDK::test();
 
-[$result, $err] = $client->CatFact()->load(["id" => "test01"]);
+$result = $client->fact()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -129,8 +138,8 @@ $client = new CatFactSDK([
 Create a `.env.local` file at the project root:
 
 ```
-CAT-FACT_TEST_LIVE=TRUE
-CAT-FACT_APIKEY=<your-key>
+CAT_FACT_TEST_LIVE=TRUE
+CAT_FACT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -200,8 +209,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -254,7 +267,7 @@ API path: `/users`
 
 ### Fact
 
-Create an instance: `const fact = client.Fact()`
+Create an instance: `const fact = client.fact`
 
 #### Operations
 
@@ -281,19 +294,19 @@ Create an instance: `const fact = client.Fact()`
 #### Example: Load
 
 ```ts
-const fact = await client.Fact().load({ id: 'fact_id' })
+const fact = await client.fact.load({ id: 'fact_id' })
 ```
 
 #### Example: List
 
 ```ts
-const facts = await client.Fact().list()
+const facts = await client.fact.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -314,7 +327,7 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
@@ -389,11 +402,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$fact = $client->fact();
+$fact->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $fact->dataGet() now returns the loaded fact data
+// $fact->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

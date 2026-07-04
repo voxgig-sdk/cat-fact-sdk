@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:fact():list() / client:fact():load({ id = ... })
+function CatFactSDK:fact(data)
+  local EntityMod = require("entity.fact_entity")
+  if data == nil then
+    if self._fact == nil then
+      self._fact = EntityMod.new(self, nil)
+    end
+    return self._fact
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:fact() instead.
 function CatFactSDK:Fact(data)
   local EntityMod = require("entity.fact_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
+function CatFactSDK:user(data)
+  local EntityMod = require("entity.user_entity")
+  if data == nil then
+    if self._user == nil then
+      self._user = EntityMod.new(self, nil)
+    end
+    return self._user
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:user() instead.
 function CatFactSDK:User(data)
   local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)
