@@ -122,7 +122,7 @@ Alias for `CatFactSDK.test()`.
 ## FactEntity
 
 ```ts
-const fact = client.fact
+const fact = client.Fact()
 ```
 
 ### Fields
@@ -147,7 +147,7 @@ const fact = client.fact
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.fact.list()
+const results = await client.Fact().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -155,7 +155,7 @@ const results = await client.fact.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.fact.load({ id: 'fact_id' })
+const result = await client.Fact().load({ id: 'fact_id' })
 ```
 
 ### Common Methods
@@ -189,7 +189,7 @@ Return a copy of the entity options.
 ## UserEntity
 
 ```ts
-const user = client.user
+const user = client.User()
 ```
 
 ### Fields
@@ -209,7 +209,7 @@ const user = client.user
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.user.list()
+const results = await client.User().list()
 ```
 
 ### Common Methods

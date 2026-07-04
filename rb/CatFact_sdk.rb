@@ -208,26 +208,14 @@ class CatFactSDK
   end
 
 
-  # Idiomatic facade: client.fact.list / client.fact.load({ "id" => ... })
-  def fact
-    require_relative 'entity/fact_entity'
-    @fact ||= FactEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.fact instead.
+  # Canonical facade: client.Fact.list / client.Fact.load({ "id" => ... })
   def Fact(data = nil)
     require_relative 'entity/fact_entity'
     FactEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.user.list / client.user.load({ "id" => ... })
-  def user
-    require_relative 'entity/user_entity'
-    @user ||= UserEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.user instead.
+  # Canonical facade: client.User.list / client.User.load({ "id" => ... })
   def User(data = nil)
     require_relative 'entity/user_entity'
     UserEntity.new(self, data)

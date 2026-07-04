@@ -220,41 +220,21 @@ class CatFactSDK:
         }
 
 
-    @property
-    def fact(self):
-        """Idiomatic facade: client.fact.list() / client.fact.load({"id": ...})."""
-        from entity.fact_entity import FactEntity
-        cached = getattr(self, "_fact", None)
-        if cached is None:
-            cached = FactEntity(self, None)
-            self._fact = cached
-        return cached
-
-    def Fact(self, data=None):
-        # Deprecated: use client.fact instead.
+    def Fact(self, data=None) -> "FactEntity":
+        """Entity factory: client.Fact().list({}) / client.Fact().load({"id": ...})."""
         from entity.fact_entity import FactEntity
         return FactEntity(self, data)
 
 
-    @property
-    def user(self):
-        """Idiomatic facade: client.user.list() / client.user.load({"id": ...})."""
-        from entity.user_entity import UserEntity
-        cached = getattr(self, "_user", None)
-        if cached is None:
-            cached = UserEntity(self, None)
-            self._user = cached
-        return cached
-
-    def User(self, data=None):
-        # Deprecated: use client.user instead.
+    def User(self, data=None) -> "UserEntity":
+        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "CatFactSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class CatFactSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.fact_entity import FactEntity
+    from entity.user_entity import UserEntity

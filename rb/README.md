@@ -30,16 +30,14 @@ client = CatFactSDK.new({
 })
 ```
 
-### 2. List facts
+### 2. List fact records
 
 ```ruby
 begin
-  result = client.fact.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Fact records — iterate directly.
+  facts = client.Fact.list
+  facts.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,8 +48,9 @@ end
 
 ```ruby
 begin
-  result = client.fact.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Fact record (raises on error).
+  fact = client.Fact.load({ "id" => "example_id" })
+  puts fact
 rescue => err
   warn "load failed: #{err}"
 end
@@ -98,13 +97,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CatFactSDK.test
+client = CatFactSDK.test({
+  "entity" => { "fact" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.fact.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+fact = client.Fact.load({ "id" => "test01" })
+puts fact
 ```
 
 ### Use a custom fetch function
@@ -183,7 +186,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Fact` | `(data) -> FactEntity` | Create a Fact entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -262,7 +265,7 @@ API path: `/users`
 
 ### Fact
 
-Create an instance: `const fact = client.fact`
+Create an instance: `fact = client.Fact`
 
 #### Operations
 
@@ -288,20 +291,22 @@ Create an instance: `const fact = client.fact`
 
 #### Example: Load
 
-```ts
-const fact = await client.fact.load({ id: 'fact_id' })
+```ruby
+# load returns the bare Fact record (raises on error).
+fact = client.Fact.load({ "id" => "fact_id" })
 ```
 
 #### Example: List
 
-```ts
-const facts = await client.fact.list()
+```ruby
+# list returns an Array of Fact records (raises on error).
+facts = client.Fact.list
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User`
 
 #### Operations
 
@@ -321,8 +326,9 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```ruby
+# list returns an Array of User records (raises on error).
+users = client.User.list
 ```
 
 
@@ -397,7 +403,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-fact = client.fact
+fact = client.Fact
 fact.load({ "id" => "example_id" })
 
 # fact.data_get now returns the loaded fact data

@@ -28,9 +28,11 @@ const client = new CatFactSDK({
   apikey: process.env.CAT_FACT_APIKEY,
 })
 
-// List all facts
-const facts = await client.fact.list()
-console.log(facts.data)
+// List all facts (returns Fact[])
+const facts = await client.Fact().list()
+for (const fact of facts) {
+  console.log(fact)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,12 +91,13 @@ client = CatFactSDK({
     "apikey": os.environ.get("CAT_FACT_APIKEY"),
 })
 
-# List all facts
-facts = client.fact.list()
-print(facts)
+# List all facts (returns a list, raises on error)
+facts = client.Fact().list({})
+for fact in facts:
+    print(fact)
 
-# Load a specific fact
-fact = client.fact.load({"id": "example_id"})
+# Load a specific fact (returns the record, raises on error)
+fact = client.Fact().load({"id": "example_id"})
 print(fact)
 ```
 
@@ -108,12 +111,12 @@ $client = new CatFactSDK([
     "apikey" => getenv("CAT_FACT_APIKEY"),
 ]);
 
-// List all facts (throws on error)
-$facts = $client->fact()->list();
+// List all facts (returns an array; throws on error)
+$facts = $client->Fact()->list();
 print_r($facts);
 
-// Load a specific fact
-$fact = $client->fact()->load(["id" => "example_id"]);
+// Load a specific fact (returns the bare record; throws on error)
+$fact = $client->Fact()->load(["id" => "example_id"]);
 print_r($fact);
 ```
 
@@ -140,12 +143,12 @@ client = CatFactSDK.new({
   "apikey" => ENV["CAT_FACT_APIKEY"],
 })
 
-# List all facts
-facts = client.fact.list
+# List all facts (returns an Array; raises on error)
+facts = client.Fact.list
 puts facts
 
-# Load a specific fact
-fact = client.fact.load({ "id" => "example_id" })
+# Load a specific fact (returns the bare record; raises on error)
+fact = client.Fact.load({ "id" => "example_id" })
 puts fact
 ```
 
@@ -159,11 +162,11 @@ local client = sdk.new({
 })
 
 -- List all facts
-local facts, err = client:fact():list()
+local facts, err = client:Fact():list()
 print(facts)
 
 -- Load a specific fact
-local fact, err = client:fact():load({ id = "example_id" })
+local fact, err = client:Fact():load({ id = "example_id" })
 print(fact)
 ```
 
@@ -176,22 +179,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CatFactSDK.test()
-const result = await client.fact.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const fact = await client.Fact().load({ id: 'test01' })
+// fact is a bare Fact populated with mock data
+console.log(fact)
 ```
 
 ### Python
 
 ```python
 client = CatFactSDK.test()
-result = client.fact.load({"id": "test01"})
+fact = client.Fact().load({"id": "test01"})
+print(fact)
 ```
 
 ### PHP
 
 ```php
-$client = CatFactSDK::test();
-$result = $client->fact()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = CatFactSDK::test([
+    "entity" => ["fact" => ["test01" => ["id" => "test01"]]],
+]);
+$fact = $client->Fact()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -206,15 +214,18 @@ result, err := client.Fact(nil).Load(
 ### Ruby
 
 ```ruby
-client = CatFactSDK.test
-result = client.fact.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = CatFactSDK.test({
+  "entity" => { "fact" => { "test01" => { "id" => "test01" } } },
+})
+fact = client.Fact.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:fact():load({ id = "test01" })
+local result, err = client:Fact():load({ id = "test01" })
 ```
 
 ## How it works
@@ -262,6 +273,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

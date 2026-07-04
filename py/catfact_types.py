@@ -4,69 +4,74 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Fact:
+class FactRequired(TypedDict):
     id: str
     text: str
     type: str
-    created_at: Optional[str] = None
-    deleted: Optional[bool] = None
-    updated_at: Optional[str] = None
-    upvote: Optional[int] = None
-    used: Optional[bool] = None
-    user: Optional[str] = None
-    user_upvoted: Optional[bool] = None
 
 
-@dataclass
-class FactLoadMatch:
-    created_at: Optional[str] = None
-    deleted: Optional[bool] = None
-    id: Optional[str] = None
-    text: Optional[str] = None
-    type: Optional[str] = None
-    updated_at: Optional[str] = None
-    upvote: Optional[int] = None
-    used: Optional[bool] = None
-    user: Optional[str] = None
-    user_upvoted: Optional[bool] = None
+class Fact(FactRequired, total=False):
+    created_at: str
+    deleted: bool
+    updated_at: str
+    upvote: int
+    used: bool
+    user: str
+    user_upvoted: bool
 
 
-@dataclass
-class FactListMatch:
-    created_at: Optional[str] = None
-    deleted: Optional[bool] = None
-    id: Optional[str] = None
-    text: Optional[str] = None
-    type: Optional[str] = None
-    updated_at: Optional[str] = None
-    upvote: Optional[int] = None
-    used: Optional[bool] = None
-    user: Optional[str] = None
-    user_upvoted: Optional[bool] = None
-
-
-@dataclass
-class User:
+class FactLoadMatch(TypedDict, total=False):
+    created_at: str
+    deleted: bool
     id: str
-    created_at: Optional[str] = None
-    email: Optional[str] = None
-    name: Optional[dict] = None
-    updated_at: Optional[str] = None
+    text: str
+    type: str
+    updated_at: str
+    upvote: int
+    used: bool
+    user: str
+    user_upvoted: bool
 
 
-@dataclass
-class UserListMatch:
-    created_at: Optional[str] = None
-    email: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[dict] = None
-    updated_at: Optional[str] = None
+class FactListMatch(TypedDict, total=False):
+    created_at: str
+    deleted: bool
+    id: str
+    text: str
+    type: str
+    updated_at: str
+    upvote: int
+    used: bool
+    user: str
+    user_upvoted: bool
 
+
+class UserRequired(TypedDict):
+    id: str
+
+
+class User(UserRequired, total=False):
+    created_at: str
+    email: str
+    name: dict
+    updated_at: str
+
+
+class UserListMatch(TypedDict, total=False):
+    created_at: str
+    email: str
+    id: str
+    name: dict
+    updated_at: str

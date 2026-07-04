@@ -33,26 +33,26 @@ local client = sdk.new({
 })
 ```
 
-### 2. List facts
+### 2. List fact records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:fact():list()
+local facts, err = client:Fact():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(facts) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a fact
 
 ```lua
-local result, err = client:fact():load({ id = "example_id" })
+local fact, err = client:Fact():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(fact)
 ```
 
 
@@ -98,8 +98,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:fact():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Fact():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -180,7 +180,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Fact` | `(data) -> FactEntity` | Create a Fact entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -202,17 +202,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local fact, err = client:Fact():load({ id = "example_id" })
+    if err then error(err) end
+    -- fact is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -256,7 +261,7 @@ API path: `/users`
 
 ### Fact
 
-Create an instance: `const fact = client.fact`
+Create an instance: `local fact = client:Fact(nil)`
 
 #### Operations
 
@@ -282,20 +287,20 @@ Create an instance: `const fact = client.fact`
 
 #### Example: Load
 
-```ts
-const fact = await client.fact.load({ id: 'fact_id' })
+```lua
+local fact, err = client:Fact():load({ id = "fact_id" })
 ```
 
 #### Example: List
 
-```ts
-const facts = await client.fact.list()
+```lua
+local facts, err = client:Fact():list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `local user = client:User(nil)`
 
 #### Operations
 
@@ -315,8 +320,8 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```lua
+local users, err = client:User():list()
 ```
 
 
@@ -391,7 +396,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local fact = client:fact()
+local fact = client:Fact()
 fact:load({ id = "example_id" })
 
 -- fact:data_get() now returns the loaded fact data

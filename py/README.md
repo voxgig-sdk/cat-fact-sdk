@@ -34,24 +34,28 @@ client = CatFactSDK({
 })
 ```
 
-### 2. List facts
+### 2. List fact records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.fact.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    facts = client.Fact().list({})
+    for fact in facts:
+        print(fact)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a fact
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.fact.load({"id": "example_id"})
-    print(result)
+    fact = client.Fact().load({"id": "example_id"})
+    print(fact)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -99,8 +103,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CatFactSDK.test()
 
-result = client.fact.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+fact = client.Fact().load({"id": "test01"})
+# fact contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -179,7 +184,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Fact` | `(data) -> FactEntity` | Create a Fact entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -259,7 +264,7 @@ API path: `/users`
 
 ### Fact
 
-Create an instance: `const fact = client.fact`
+Create an instance: `fact = client.Fact()`
 
 #### Operations
 
@@ -285,20 +290,20 @@ Create an instance: `const fact = client.fact`
 
 #### Example: Load
 
-```ts
-const fact = await client.fact.load({ id: 'fact_id' })
+```python
+fact = client.Fact().load({"id": "fact_id"})
 ```
 
 #### Example: List
 
-```ts
-const facts = await client.fact.list()
+```python
+facts = client.Fact().list({})
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User()`
 
 #### Operations
 
@@ -318,8 +323,8 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```python
+users = client.User().list({})
 ```
 
 
@@ -393,7 +398,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-fact = client.fact
+fact = client.Fact()
 fact.load({"id": "example_id"})
 
 # fact.data_get() now returns the loaded fact data

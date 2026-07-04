@@ -91,7 +91,7 @@ same parameters as `direct()`. Raises on error.
 ## FactEntity
 
 ```ruby
-fact = client.fact
+fact = client.Fact
 ```
 
 ### Fields
@@ -116,7 +116,7 @@ fact = client.fact
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.fact.list(nil)
+results = client.Fact.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -124,7 +124,7 @@ results = client.fact.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.fact.load({ "id" => "fact_id" })
+result = client.Fact.load({ "id" => "fact_id" })
 ```
 
 ### Common Methods
@@ -160,7 +160,7 @@ Return the entity name.
 ## UserEntity
 
 ```ruby
-user = client.user
+user = client.User
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ user = client.user
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.user.list(nil)
+results = client.User.list(nil)
 ```
 
 ### Common Methods

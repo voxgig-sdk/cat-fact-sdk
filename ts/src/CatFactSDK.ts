@@ -205,28 +205,14 @@ class CatFactSDK {
 
 
 
-  _fact?: FactEntity
-
-  // Idiomatic facade: `client.fact.list()` / `client.fact.load({ id })`.
-  get fact(): FactEntity {
-    return (this._fact ??= new FactEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.fact` instead. */
+  // Entity access: `client.Fact().list()` / `client.Fact().load({ id })`.
   Fact(data?: any) {
     const self = this
     return new FactEntity(self,data)
   }
 
 
-  _user?: UserEntity
-
-  // Idiomatic facade: `client.user.list()` / `client.user.load({ id })`.
-  get user(): UserEntity {
-    return (this._user ??= new UserEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.user` instead. */
+  // Entity access: `client.User().list()` / `client.User().load({ id })`.
   User(data?: any) {
     const self = this
     return new UserEntity(self,data)

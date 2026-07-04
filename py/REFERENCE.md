@@ -85,7 +85,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## FactEntity
 
 ```python
-fact = client.fact
+fact = client.Fact()
 ```
 
 ### Fields
@@ -110,7 +110,9 @@ fact = client.fact
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.fact.list({})
+results = client.Fact().list({})
+for fact in results:
+    print(fact)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -118,7 +120,7 @@ results = client.fact.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.fact.load({"id": "fact_id"})
+result = client.Fact().load({"id": "fact_id"})
 ```
 
 ### Common Methods
@@ -153,7 +155,7 @@ Return the entity name.
 ## UserEntity
 
 ```python
-user = client.user
+user = client.User()
 ```
 
 ### Fields
@@ -173,7 +175,9 @@ user = client.user
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.user.list({})
+results = client.User().list({})
+for user in results:
+    print(user)
 ```
 
 ### Common Methods

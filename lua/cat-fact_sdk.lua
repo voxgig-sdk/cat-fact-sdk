@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:fact():list() / client:fact():load({ id = ... })
-function CatFactSDK:fact(data)
+-- Idiomatic facade: client:Fact():list() / client:Fact():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CatFactSDK:Fact(data)
   local EntityMod = require("entity.fact_entity")
   if data == nil then
     if self._fact == nil then
@@ -256,15 +257,10 @@ function CatFactSDK:fact(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:fact() instead.
-function CatFactSDK:Fact(data)
-  local EntityMod = require("entity.fact_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
-function CatFactSDK:user(data)
+-- Idiomatic facade: client:User():list() / client:User():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CatFactSDK:User(data)
   local EntityMod = require("entity.user_entity")
   if data == nil then
     if self._user == nil then
@@ -272,12 +268,6 @@ function CatFactSDK:user(data)
     end
     return self._user
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:user() instead.
-function CatFactSDK:User(data)
-  local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)
 end
 

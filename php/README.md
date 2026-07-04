@@ -31,18 +31,16 @@ $client = new CatFactSDK([
 ]);
 ```
 
-### 2. List facts
+### 2. List fact records
 
 ```php
 try {
-    $result = $client->fact()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Fact records — iterate directly.
+    $facts = $client->Fact()->list();
+    foreach ($facts as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -51,9 +49,10 @@ try {
 
 ```php
 try {
-    $result = $client->fact()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Fact record (throws on error).
+    $fact = $client->Fact()->load(["id" => "example_id"]);
+    print_r($fact);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -99,13 +98,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = CatFactSDK::test();
+$client = CatFactSDK::test([
+    "entity" => ["fact" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->fact()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$fact = $client->Fact()->load(["id" => "test01"]);
+print_r($fact);
 ```
 
 ### Use a custom fetch function
@@ -187,7 +190,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Fact` | `($data): FactEntity` | Create a Fact entity instance. |
-| `User` | `($data): UserEntity` | Create a User entity instance. |
+| `User` | `($data): UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -267,7 +270,7 @@ API path: `/users`
 
 ### Fact
 
-Create an instance: `const fact = client.fact`
+Create an instance: `$fact = $client->Fact();`
 
 #### Operations
 
@@ -293,20 +296,22 @@ Create an instance: `const fact = client.fact`
 
 #### Example: Load
 
-```ts
-const fact = await client.fact.load({ id: 'fact_id' })
+```php
+// load() returns the bare Fact record (throws on error).
+$fact = $client->Fact()->load(["id" => "fact_id"]);
 ```
 
 #### Example: List
 
-```ts
-const facts = await client.fact.list()
+```php
+// list() returns an array of Fact records (throws on error).
+$facts = $client->Fact()->list();
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `$user = $client->User();`
 
 #### Operations
 
@@ -326,8 +331,9 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```php
+// list() returns an array of User records (throws on error).
+$users = $client->User()->list();
 ```
 
 
@@ -402,7 +408,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$fact = $client->fact();
+$fact = $client->Fact();
 $fact->load(["id" => "example_id"]);
 
 // $fact->dataGet() now returns the loaded fact data

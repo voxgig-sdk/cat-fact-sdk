@@ -90,7 +90,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## FactEntity
 
 ```php
-$fact = $client->fact();
+$fact = $client->Fact();
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ $fact = $client->fact();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->fact()->list([]);
+$results = $client->Fact()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -123,7 +123,7 @@ $results = $client->fact()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->fact()->load(["id" => "fact_id"]);
+$result = $client->Fact()->load(["id" => "fact_id"]);
 ```
 
 ### Common Methods
@@ -159,7 +159,7 @@ Return the entity name.
 ## UserEntity
 
 ```php
-$user = $client->user();
+$user = $client->User();
 ```
 
 ### Fields
@@ -179,7 +179,7 @@ $user = $client->user();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->user()->list([]);
+$results = $client->User()->list([]);
 ```
 
 ### Common Methods

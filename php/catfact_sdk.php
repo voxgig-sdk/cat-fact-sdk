@@ -233,10 +233,10 @@ class CatFactSDK
 
     private $_fact = null;
 
-    // Idiomatic facade: $client->fact()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Fact() (PHP method
-    // names are case-insensitive).
-    public function fact($data = null)
+    // Canonical facade: $client->Fact()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->fact()
+    // resolves here too.
+    public function Fact($data = null)
     {
         require_once __DIR__ . '/entity/fact_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class CatFactSDK
 
     private $_user = null;
 
-    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias User() (PHP method
-    // names are case-insensitive).
-    public function user($data = null)
+    // Canonical facade: $client->User()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->user()
+    // resolves here too.
+    public function User($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
         if ($data === null) {
