@@ -129,16 +129,16 @@ const fact = client.Fact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `text` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `upvote` | ``$INTEGER`` | No |  |
-| `used` | ``$BOOLEAN`` | No |  |
-| `user` | ``$STRING`` | No |  |
-| `user_upvoted` | ``$BOOLEAN`` | No |  |
+| `created_at` | `string` | No |  |
+| `deleted` | `boolean` | No |  |
+| `id` | `string` | Yes |  |
+| `text` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
+| `updated_at` | `string` | No |  |
+| `upvote` | `number` | No |  |
+| `used` | `boolean` | No |  |
+| `user` | `string` | No |  |
+| `user_upvoted` | `boolean` | No |  |
 
 ### Operations
 
@@ -196,11 +196,11 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `name` | ``$OBJECT`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `created_at` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | Yes |  |
+| `name` | `Record<string, any>` | No |  |
+| `updated_at` | `string` | No |  |
 
 ### Operations
 

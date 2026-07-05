@@ -53,7 +53,7 @@ Fact = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Fact#load (any subset of Fact fields).
+# Request payload for Fact#load.
 #
 # @!attribute [rw] created_at
 #   @return [String, nil]
@@ -62,7 +62,7 @@ Fact = Struct.new(
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] text
 #   @return [String, nil]
@@ -98,7 +98,7 @@ FactLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Fact#list (any subset of Fact fields).
+# Request payload for Fact#list.
 #
 # @!attribute [rw] created_at
 #   @return [String, nil]
@@ -168,7 +168,7 @@ User = Struct.new(
   keyword_init: true
 )
 
-# Match filter for User#list (any subset of User fields).
+# Request payload for User#list.
 #
 # @!attribute [rw] created_at
 #   @return [String, nil]

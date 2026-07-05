@@ -27,12 +27,12 @@ class Fact
     public ?bool $user_upvoted = null;
 }
 
-/** Match filter for Fact#load (any subset of Fact fields). */
+/** Request payload for Fact#load. */
 class FactLoadMatch
 {
     public ?string $created_at = null;
     public ?bool $deleted = null;
-    public ?string $id = null;
+    public string $id;
     public ?string $text = null;
     public ?string $type = null;
     public ?string $updated_at = null;
@@ -42,7 +42,7 @@ class FactLoadMatch
     public ?bool $user_upvoted = null;
 }
 
-/** Match filter for Fact#list (any subset of Fact fields). */
+/** Request payload for Fact#list. */
 class FactListMatch
 {
     public ?string $created_at = null;
@@ -67,7 +67,7 @@ class User
     public ?string $updated_at = null;
 }
 
-/** Match filter for User#list (any subset of User fields). */
+/** Request payload for User#list. */
 class UserListMatch
 {
     public ?string $created_at = null;

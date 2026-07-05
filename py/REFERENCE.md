@@ -8,7 +8,7 @@ Complete API reference for the CatFact Python SDK.
 ### Constructor
 
 ```python
-from cat-fact_sdk import CatFactSDK
+from catfact_sdk import CatFactSDK
 
 client = CatFactSDK(options)
 ```
@@ -92,25 +92,25 @@ fact = client.Fact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `text` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `upvote` | ``$INTEGER`` | No |  |
-| `used` | ``$BOOLEAN`` | No |  |
-| `user` | ``$STRING`` | No |  |
-| `user_upvoted` | ``$BOOLEAN`` | No |  |
+| `created_at` | `str` | No |  |
+| `deleted` | `bool` | No |  |
+| `id` | `str` | Yes |  |
+| `text` | `str` | Yes |  |
+| `type` | `str` | Yes |  |
+| `updated_at` | `str` | No |  |
+| `upvote` | `int` | No |  |
+| `used` | `bool` | No |  |
+| `user` | `str` | No |  |
+| `user_upvoted` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Fact().list({})
+results = client.Fact().list()
 for fact in results:
     print(fact)
 ```
@@ -162,20 +162,20 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `name` | ``$OBJECT`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `created_at` | `str` | No |  |
+| `email` | `str` | No |  |
+| `id` | `str` | Yes |  |
+| `name` | `dict` | No |  |
+| `updated_at` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.User().list({})
+results = client.User().list()
 for user in results:
     print(user)
 ```

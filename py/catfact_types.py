@@ -32,10 +32,13 @@ class Fact(FactRequired, total=False):
     user_upvoted: bool
 
 
-class FactLoadMatch(TypedDict, total=False):
+class FactLoadMatchRequired(TypedDict):
+    id: str
+
+
+class FactLoadMatch(FactLoadMatchRequired, total=False):
     created_at: str
     deleted: bool
-    id: str
     text: str
     type: str
     updated_at: str

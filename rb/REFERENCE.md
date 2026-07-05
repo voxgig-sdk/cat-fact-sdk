@@ -8,7 +8,7 @@ Complete API reference for the CatFact Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'cat-fact_sdk'
+require_relative 'CatFact_sdk'
 
 client = CatFactSDK.new(options)
 ```
@@ -98,25 +98,25 @@ fact = client.Fact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `text` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `upvote` | ``$INTEGER`` | No |  |
-| `used` | ``$BOOLEAN`` | No |  |
-| `user` | ``$STRING`` | No |  |
-| `user_upvoted` | ``$BOOLEAN`` | No |  |
+| `created_at` | `String` | No |  |
+| `deleted` | `Boolean` | No |  |
+| `id` | `String` | Yes |  |
+| `text` | `String` | Yes |  |
+| `type` | `String` | Yes |  |
+| `updated_at` | `String` | No |  |
+| `upvote` | `Integer` | No |  |
+| `used` | `Boolean` | No |  |
+| `user` | `String` | No |  |
+| `user_upvoted` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Fact.list(nil)
+results = client.Fact.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -167,20 +167,20 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `name` | ``$OBJECT`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `created_at` | `String` | No |  |
+| `email` | `String` | No |  |
+| `id` | `String` | Yes |  |
+| `name` | `Hash` | No |  |
+| `updated_at` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.User.list(nil)
+results = client.User.list
 ```
 
 ### Common Methods

@@ -4,6 +4,11 @@
 
 The Python SDK for the CatFact API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Fact()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +46,7 @@ error — iterate it directly.
 
 ```python
 try:
-    facts = client.Fact().list({})
+    facts = client.Fact().list()
     for fact in facts:
         print(fact)
 except Exception as err:
@@ -58,6 +63,34 @@ try:
     print(fact)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    facts = client.Fact().list()
+    print(facts)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -78,7 +111,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -104,7 +140,7 @@ Create a mock client for unit testing — no server required:
 client = CatFactSDK.test()
 
 # Entity ops return the bare record and raise on error.
-fact = client.Fact().load({"id": "test01"})
+fact = client.Fact().list()
 # fact contains the mock response record
 ```
 
@@ -194,9 +230,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -270,23 +303,23 @@ Create an instance: `fact = client.Fact()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | ``$STRING`` |  |
-| `deleted` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `text` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
-| `upvote` | ``$INTEGER`` |  |
-| `used` | ``$BOOLEAN`` |  |
-| `user` | ``$STRING`` |  |
-| `user_upvoted` | ``$BOOLEAN`` |  |
+| `created_at` | `str` |  |
+| `deleted` | `bool` |  |
+| `id` | `str` |  |
+| `text` | `str` |  |
+| `type` | `str` |  |
+| `updated_at` | `str` |  |
+| `upvote` | `int` |  |
+| `used` | `bool` |  |
+| `user` | `str` |  |
+| `user_upvoted` | `bool` |  |
 
 #### Example: Load
 
@@ -297,7 +330,7 @@ fact = client.Fact().load({"id": "fact_id"})
 #### Example: List
 
 ```python
-facts = client.Fact().list({})
+facts = client.Fact().list()
 ```
 
 
@@ -309,31 +342,35 @@ Create an instance: `user = client.User()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$OBJECT`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `created_at` | `str` |  |
+| `email` | `str` |  |
+| `id` | `str` |  |
+| `name` | `dict` |  |
+| `updated_at` | `str` |  |
 
 #### Example: List
 
 ```python
-users = client.User().list({})
+users = client.User().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -350,8 +387,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -394,14 +432,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 fact = client.Fact()
-fact.load({"id": "example_id"})
+fact.list()
 
-# fact.data_get() now returns the loaded fact data
+# fact.data_get() now returns the fact data from the last list
 # fact.match_get() returns the last match criteria
 ```
 

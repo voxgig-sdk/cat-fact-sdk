@@ -22,12 +22,11 @@ type Fact struct {
 	UserUpvoted *bool `json:"user_upvoted,omitempty"`
 }
 
-// FactLoadMatch mirrors the fact fields as an all-optional match
-// filter (Go analog of Partial<Fact>).
+// FactLoadMatch is the typed request payload for Fact.LoadTyped.
 type FactLoadMatch struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	Text *string `json:"text,omitempty"`
 	Type *string `json:"type,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
@@ -37,8 +36,7 @@ type FactLoadMatch struct {
 	UserUpvoted *bool `json:"user_upvoted,omitempty"`
 }
 
-// FactListMatch mirrors the fact fields as an all-optional match
-// filter (Go analog of Partial<Fact>).
+// FactListMatch is the typed request payload for Fact.ListTyped.
 type FactListMatch struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	Deleted *bool `json:"deleted,omitempty"`
@@ -61,8 +59,7 @@ type User struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 }
 
-// UserListMatch mirrors the user fields as an all-optional match
-// filter (Go analog of Partial<User>).
+// UserListMatch is the typed request payload for User.ListTyped.
 type UserListMatch struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	Email *string `json:"email,omitempty"`

@@ -8,7 +8,7 @@ Complete API reference for the CatFact PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/cat-fact_sdk.php';
+require_once __DIR__ . '/catfact_sdk.php';
 
 $client = new CatFactSDK($options);
 ```
@@ -50,11 +50,11 @@ Create a new `FactEntity` instance. Pass `null` for no initial data.
 
 Create a new `UserEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): CatFactUtility`
 
 Return a copy of the SDK utility object.
 
@@ -97,25 +97,25 @@ $fact = $client->Fact();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `text` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
-| `updated_at` | ``$STRING`` | No |  |
-| `upvote` | ``$INTEGER`` | No |  |
-| `used` | ``$BOOLEAN`` | No |  |
-| `user` | ``$STRING`` | No |  |
-| `user_upvoted` | ``$BOOLEAN`` | No |  |
+| `created_at` | `string` | No |  |
+| `deleted` | `bool` | No |  |
+| `id` | `string` | Yes |  |
+| `text` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
+| `updated_at` | `string` | No |  |
+| `upvote` | `int` | No |  |
+| `used` | `bool` | No |  |
+| `user` | `string` | No |  |
+| `user_upvoted` | `bool` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Fact()->list([]);
+$results = $client->Fact()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -128,19 +128,19 @@ $result = $client->Fact()->load(["id" => "fact_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -149,7 +149,7 @@ Set the entity match criteria.
 Create a new `FactEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -166,37 +166,37 @@ $user = $client->User();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `name` | ``$OBJECT`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `created_at` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | Yes |  |
+| `name` | `array` | No |  |
+| `updated_at` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->User()->list([]);
+$results = $client->User()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -205,7 +205,7 @@ Set the entity match criteria.
 Create a new `UserEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

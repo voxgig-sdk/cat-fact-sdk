@@ -221,13 +221,13 @@ class CatFactSDK:
 
 
     def Fact(self, data=None) -> "FactEntity":
-        """Entity factory: client.Fact().list({}) / client.Fact().load({"id": ...})."""
+        """Entity factory: client.Fact().list() / client.Fact().load({"id": ...})."""
         from entity.fact_entity import FactEntity
         return FactEntity(self, data)
 
 
     def User(self, data=None) -> "UserEntity":
-        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
+        """Entity factory: client.User().list() / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 
