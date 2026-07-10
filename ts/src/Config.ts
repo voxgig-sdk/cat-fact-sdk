@@ -39,7 +39,7 @@ class Config {
     base: 'https://cat-fact.herokuapp.com',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

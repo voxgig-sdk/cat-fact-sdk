@@ -21,7 +21,7 @@ class CatFactConfig
             "options" => [
                 "base" => "https://cat-fact.herokuapp.com",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

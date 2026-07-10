@@ -63,7 +63,7 @@ func main() {
     }
 
     // Load a single fact — the value is the loaded record.
-    fact, err := client.Fact(nil).Load(map[string]any{"id": "example"}, nil)
+    fact, err := client.Fact(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }

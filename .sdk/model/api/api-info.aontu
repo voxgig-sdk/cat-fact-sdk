@@ -9,15 +9,22 @@ main: {
         url: "https://alexwohlbruck.github.io/cat-facts/docs/"
       }
       description: "An API that shows different Cat Facts! Daily cat facts! 🐱"
+      security: {
+        in: "cookie"
+        name: "connect.sid"
+        prefix: ""
+        scheme: "cookieAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Production server"
           url: "https://cat-fact.herokuapp.com"
         }
       ]
+      summary: "An API that shows different Cat Facts!"
       title: "Cat Fact API"
       version: "1.0.0"
+      website: "https://cat-fact.herokuapp.com"
     }
   }
-}
-

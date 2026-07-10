@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -436,14 +433,24 @@
           "url": "https://alexwohlbruck.github.io/cat-facts/docs/"
         },
         "description": "An API that shows different Cat Facts! Daily cat facts! 🐱",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "cookie",
+          "name": "connect.sid",
+          "prefix": "",
+          "scheme": "cookieAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production server",
             "url": "https://cat-fact.herokuapp.com"
           }
         ],
+        "summary": "An API that shows different Cat Facts!",
         "title": "Cat Fact API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://cat-fact.herokuapp.com"
       },
       "option": {},
       "target": {
@@ -496,6 +503,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -546,6 +556,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
