@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- CatFact SDK exists test
 
 local sdk = require("cat-fact_sdk")
 
