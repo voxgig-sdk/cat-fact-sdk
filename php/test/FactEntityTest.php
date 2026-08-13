@@ -72,7 +72,7 @@ class FactEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set CATFACT_TEST_FACT_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set CAT_FACT_TEST_FACT_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -97,7 +97,7 @@ class FactEntityTest extends TestCase
             "id" => $fact_ref01_data["id"],
         ];
         $fact_ref01_data_dt0_loaded = $fact_ref01_ent->load($fact_ref01_match_dt0, null);
-        $fact_ref01_data_dt0_load_result = Helpers::to_map($fact_ref01_data_dt0_loaded);
+        $fact_ref01_data_dt0_load_result = Helpers::to_map(is_object($fact_ref01_data_dt0_loaded) && method_exists($fact_ref01_data_dt0_loaded, 'data_get') ? $fact_ref01_data_dt0_loaded->data_get() : $fact_ref01_data_dt0_loaded);
         $this->assertNotNull($fact_ref01_data_dt0_load_result);
         $this->assertEquals($fact_ref01_data_dt0_load_result["id"], $fact_ref01_data["id"]);
 
@@ -126,39 +126,39 @@ function fact_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("CATFACT_TEST_FACT_ENTID");
+    $entid_env_raw = getenv("CAT_FACT_TEST_FACT_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "CATFACT_TEST_FACT_ENTID" => $idmap,
-        "CATFACT_TEST_LIVE" => "FALSE",
-        "CATFACT_TEST_EXPLAIN" => "FALSE",
-        "CATFACT_APIKEY" => "NONE",
+        "CAT_FACT_TEST_FACT_ENTID" => $idmap,
+        "CAT_FACT_TEST_LIVE" => "FALSE",
+        "CAT_FACT_TEST_EXPLAIN" => "FALSE",
+        "CAT_FACT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["CATFACT_TEST_FACT_ENTID"]);
+        $env["CAT_FACT_TEST_FACT_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["CATFACT_TEST_LIVE"] === "TRUE") {
+    if ($env["CAT_FACT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CATFACT_APIKEY"],
+                "apikey" => $env["CAT_FACT_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new CatFactSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["CATFACT_TEST_LIVE"] === "TRUE";
+    $live = $env["CAT_FACT_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["CATFACT_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["CAT_FACT_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

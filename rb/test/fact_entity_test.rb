@@ -62,7 +62,7 @@ class FactEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set CATFACT_TEST_FACT_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set CAT_FACT_TEST_FACT_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -87,7 +87,7 @@ class FactEntityTest < Minitest::Test
       "id" => fact_ref01_data["id"],
     }
     fact_ref01_data_dt0_loaded = fact_ref01_ent.load(fact_ref01_match_dt0, nil)
-    fact_ref01_data_dt0_load_result = Helpers.to_map(fact_ref01_data_dt0_loaded)
+    fact_ref01_data_dt0_load_result = Helpers.to_map(fact_ref01_data_dt0_loaded.respond_to?(:data_get) ? fact_ref01_data_dt0_loaded.data_get : fact_ref01_data_dt0_loaded)
     assert !fact_ref01_data_dt0_load_result.nil?
     assert_equal fact_ref01_data_dt0_load_result["id"], fact_ref01_data["id"]
 
@@ -120,39 +120,39 @@ def fact_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["CATFACT_TEST_FACT_ENTID"]
+  entid_env_raw = ENV["CAT_FACT_TEST_FACT_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "CATFACT_TEST_FACT_ENTID" => idmap,
-    "CATFACT_TEST_LIVE" => "FALSE",
-    "CATFACT_TEST_EXPLAIN" => "FALSE",
-    "CATFACT_APIKEY" => "NONE",
+    "CAT_FACT_TEST_FACT_ENTID" => idmap,
+    "CAT_FACT_TEST_LIVE" => "FALSE",
+    "CAT_FACT_TEST_EXPLAIN" => "FALSE",
+    "CAT_FACT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["CATFACT_TEST_FACT_ENTID"])
+    env["CAT_FACT_TEST_FACT_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["CATFACT_TEST_LIVE"] == "TRUE"
+  if env["CAT_FACT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["CATFACT_APIKEY"],
+        "apikey" => env["CAT_FACT_APIKEY"],
       },
       extra || {},
     ])
     client = CatFactSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["CATFACT_TEST_LIVE"] == "TRUE"
+  live = env["CAT_FACT_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["CATFACT_TEST_EXPLAIN"] == "TRUE",
+    explain: env["CAT_FACT_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

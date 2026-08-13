@@ -37,7 +37,7 @@ class UserEntity extends CatFactEntityBase<User> {
 
 
 
-  async list(this: any, reqmatch?: UserListMatch, ctrl?: Control): Promise<User[]> {
+  async list(this: any, reqmatch?: UserListMatch, ctrl?: Control): Promise<UserEntity[]> {
 
     const utility = this._utility
 

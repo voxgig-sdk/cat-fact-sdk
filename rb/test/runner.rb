@@ -23,8 +23,8 @@ module CatFactTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("CATFACT_TEST_LIVE")
-    override = getenv("CATFACT_TEST_OVERRIDE")
+    live = getenv("CAT_FACT_TEST_LIVE")
+    override = getenv("CAT_FACT_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module CatFactTestRunner
       end
     end
 
-    explain = getenv("CATFACT_TEST_EXPLAIN")
-    m["CATFACT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("CAT_FACT_TEST_EXPLAIN")
+    m["CAT_FACT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import CatFactSDK
-from core.error import CatFactError
-from core.result import CatFactResult
-from core.response import CatFactResponse
-from core.spec import CatFactSpec
-from feature.base_feature import CatFactBaseFeature
+from projectname_sdk.core.error import CatFactError
+from projectname_sdk.core.result import CatFactResult
+from projectname_sdk.core.response import CatFactResponse
+from projectname_sdk.core.spec import CatFactSpec
+from projectname_sdk.feature.base_feature import CatFactBaseFeature
 
 
 def _client():

@@ -39,7 +39,7 @@ begin
   # list returns an Array of Fact records — iterate directly.
   facts = client.Fact.list
   facts.each do |item|
-    puts "#{item["id"]} #{item["created_at"]}"
+    puts "#{item["id"]} #{item["createdAt"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,7 +50,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Fact record (raises on error).
+  # load returns the ENTITY — call data_get for the Fact record (raises on error).
   fact = client.Fact.load({ "id" => "example_id" })
   puts fact
 rescue => err
@@ -136,7 +136,8 @@ client = CatFactSDK.test({
   "entity" => { "fact" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 fact = client.Fact.list()
 puts fact
 ```
@@ -257,16 +258,16 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `deleted` |  |
 | `id` |  |
 | `text` |  |
 | `type` |  |
-| `updated_at` |  |
-| `upvote` |  |
+| `updatedAt` |  |
+| `upvotes` |  |
 | `used` |  |
 | `user` |  |
-| `user_upvoted` |  |
+| `userUpvoted` |  |
 
 Operations: List, Load.
 
@@ -276,11 +277,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `email` |  |
 | `id` |  |
 | `name` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 
 Operations: List.
 
@@ -306,21 +307,21 @@ Create an instance: `fact = client.Fact`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
+| `createdAt` | `String` |  |
 | `deleted` | `Boolean` |  |
 | `id` | `String` |  |
 | `text` | `String` |  |
 | `type` | `String` |  |
-| `updated_at` | `String` |  |
-| `upvote` | `Integer` |  |
+| `updatedAt` | `String` |  |
+| `upvotes` | `Integer` |  |
 | `used` | `Boolean` |  |
 | `user` | `String` |  |
-| `user_upvoted` | `Boolean` |  |
+| `userUpvoted` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Fact record (raises on error).
+# load returns the ENTITY — call data_get for the Fact record (raises on error).
 fact = client.Fact.load({ "id" => "fact_id" })
 ```
 
@@ -346,11 +347,11 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
+| `createdAt` | `String` |  |
 | `email` | `String` |  |
 | `id` | `String` |  |
 | `name` | `Hash` |  |
-| `updated_at` | `String` |  |
+| `updatedAt` | `String` |  |
 
 #### Example: List
 

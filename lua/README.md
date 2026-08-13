@@ -45,7 +45,7 @@ local facts, err = client:Fact():list()
 if err then error(err) end
 
 for _, item in ipairs(facts) do
-  print(item["id"], item["created_at"])
+  print(item["id"], item["createdAt"])
 end
 ```
 
@@ -246,16 +246,16 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `deleted` |  |
 | `id` |  |
 | `text` |  |
 | `type` |  |
-| `updated_at` |  |
-| `upvote` |  |
+| `updatedAt` |  |
+| `upvotes` |  |
 | `used` |  |
 | `user` |  |
-| `user_upvoted` |  |
+| `userUpvoted` |  |
 
 Operations: List, Load.
 
@@ -265,11 +265,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `email` |  |
 | `id` |  |
 | `name` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 
 Operations: List.
 
@@ -295,16 +295,16 @@ Create an instance: `local fact = client:Fact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `deleted` | `boolean` |  |
 | `id` | `string` |  |
 | `text` | `string` |  |
 | `type` | `string` |  |
-| `updated_at` | `string` |  |
-| `upvote` | `number` |  |
+| `updatedAt` | `string` |  |
+| `upvotes` | `number` |  |
 | `used` | `boolean` |  |
 | `user` | `string` |  |
-| `user_upvoted` | `boolean` |  |
+| `userUpvoted` | `boolean` |  |
 
 #### Example: Load
 
@@ -333,11 +333,11 @@ Create an instance: `local user = client:User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `email` | `string` |  |
 | `id` | `string` |  |
 | `name` | `table` |  |
-| `updated_at` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: List
 

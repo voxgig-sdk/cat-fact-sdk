@@ -6,7 +6,7 @@ main: kit: entity: fact: {
 
   fields: [
     {
-      name: "created_at"
+      name: "createdAt"
       req: false
       type: "`$STRING`"
     }
@@ -31,12 +31,12 @@ main: kit: entity: fact: {
       type: "`$STRING`"
     }
     {
-      name: "updated_at"
+      name: "updatedAt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "upvote"
+      name: "upvotes"
       req: false
       type: "`$INTEGER`"
     }
@@ -51,7 +51,7 @@ main: kit: entity: fact: {
       type: "`$STRING`"
     }
     {
-      name: "user_upvoted"
+      name: "userUpvoted"
       req: false
       type: "`$BOOLEAN`"
     }

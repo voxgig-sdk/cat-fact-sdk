@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = CatFactSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = CatFactSDK.test({
+  entity: {
+    fact: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const facts = await client.Fact().list()
-// facts is an array of bare Fact records populated with mock data
+// facts is an array of Fact entities, populated with mock data
+// — call facts[0].data() for the record itself
 console.log(facts)
 ```
 
@@ -112,7 +121,7 @@ const client = new CatFactSDK({
   apikey: process.env.CAT_FACT_APIKEY,
 })
 
-// List all facts (returns Fact[])
+// List all facts (returns FactEntity[] — .data() for the record)
 const facts = await client.Fact().list()
 for (const fact of facts) {
   console.log(fact)
@@ -199,7 +208,7 @@ $client = new CatFactSDK([
 $facts = $client->Fact()->list();
 print_r($facts);
 
-// Load a specific fact (returns the bare record; throws on error)
+// Load a specific fact (returns the ENTITY; call data_get() for the record; throws on error)
 $fact = $client->Fact()->load(["id" => "example_id"]);
 print_r($fact);
 ```
@@ -234,7 +243,7 @@ client = CatFactSDK.new({
 facts = client.Fact.list
 puts facts
 
-# Load a specific fact (returns the bare record; raises on error)
+# Load a specific fact (returns the ENTITY; call data_get for the record)
 fact = client.Fact.load({ "id" => "example_id" })
 puts fact
 ```
@@ -373,6 +382,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://alexwohlbruck.github.io/cat-facts/docs/](https://alexwohlbruck.github.io/cat-facts/docs/)
 

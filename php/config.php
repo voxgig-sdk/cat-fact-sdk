@@ -36,7 +36,7 @@ class CatFactConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'created_at',
+              'name' => 'createdAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -71,14 +71,14 @@ class CatFactConfig
             ],
             [
               'active' => true,
-              'name' => 'updated_at',
+              'name' => 'updatedAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'upvote',
+              'name' => 'upvotes',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 6,
@@ -99,7 +99,7 @@ class CatFactConfig
             ],
             [
               'active' => true,
-              'name' => 'user_upvoted',
+              'name' => 'userUpvoted',
               'req' => false,
               'type' => '`$BOOLEAN`',
               'index$' => 9,
@@ -135,6 +135,7 @@ class CatFactConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/facts',
                   'parts' => [
@@ -183,6 +184,7 @@ class CatFactConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/facts/random',
                   'parts' => [
@@ -214,7 +216,7 @@ class CatFactConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'created_at',
+              'name' => 'createdAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -242,7 +244,7 @@ class CatFactConfig
             ],
             [
               'active' => true,
-              'name' => 'updated_at',
+              'name' => 'updatedAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 4,
@@ -257,6 +259,7 @@ class CatFactConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/users',
                   'parts' => [

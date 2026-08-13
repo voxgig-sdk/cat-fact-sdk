@@ -129,16 +129,36 @@ const fact = client.Fact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `deleted` | `boolean` | No |  |
 | `id` | `string` | Yes |  |
 | `text` | `string` | Yes |  |
 | `type` | `string` | Yes |  |
-| `updated_at` | `string` | No |  |
-| `upvote` | `number` | No |  |
+| `updatedAt` | `string` | No |  |
+| `upvotes` | `number` | No |  |
 | `used` | `boolean` | No |  |
 | `user` | `string` | No |  |
-| `user_upvoted` | `boolean` | No |  |
+| `userUpvoted` | `boolean` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `random` | `/facts/random` | `client.Fact().load({ $action: 'random', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Fact record — check the API definition for its shape.
+
+```ts
+const result = await client.Fact().load({
+  $action: 'random',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -196,11 +216,11 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `email` | `string` | No |  |
 | `id` | `string` | Yes |  |
 | `name` | `Record<string, any>` | No |  |
-| `updated_at` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 
 ### Operations
 

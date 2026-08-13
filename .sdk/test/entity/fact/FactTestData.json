@@ -2,55 +2,55 @@
   "existing": {
     "fact": {
       "FACT00": {
-        "created_at": "s64",
+        "createdAt": "s64",
         "deleted": false,
         "id": "FACT00",
         "text": "s67",
         "type": "s68",
-        "updated_at": "s69",
-        "upvote": "s6a",
+        "updatedAt": "s69",
+        "upvotes": "s6a",
         "used": false,
         "user": "s6c",
-        "user_upvoted": false
+        "userUpvoted": false
       },
       "FACT01": {
-        "created_at": "sc8",
+        "createdAt": "sc8",
         "deleted": false,
         "id": "FACT01",
         "text": "scb",
         "type": "scc",
-        "updated_at": "scd",
-        "upvote": "sce",
+        "updatedAt": "scd",
+        "upvotes": "sce",
         "used": false,
         "user": "sd0",
-        "user_upvoted": false
+        "userUpvoted": false
       },
       "FACT02": {
-        "created_at": "s12c",
+        "createdAt": "s12c",
         "deleted": false,
         "id": "FACT02",
         "text": "s12f",
         "type": "s130",
-        "updated_at": "s131",
-        "upvote": "s132",
+        "updatedAt": "s131",
+        "upvotes": "s132",
         "used": false,
         "user": "s134",
-        "user_upvoted": false
+        "userUpvoted": false
       }
     }
   },
   "new": {
     "fact": {
       "fact_ref01": {
-        "created_at": "s190",
+        "createdAt": "s190",
         "deleted": false,
         "text": "s193",
         "type": "s194",
-        "updated_at": "s195",
-        "upvote": "s196",
+        "updatedAt": "s195",
+        "upvotes": "s196",
         "used": false,
         "user": "s198",
-        "user_upvoted": false
+        "userUpvoted": false
       }
     }
   }

@@ -2,35 +2,35 @@
   "existing": {
     "user": {
       "USER00": {
-        "created_at": "s32",
+        "createdAt": "s32",
         "email": "s33",
         "id": "USER00",
         "name": {},
-        "updated_at": "s36"
+        "updatedAt": "s36"
       },
       "USER01": {
-        "created_at": "s64",
+        "createdAt": "s64",
         "email": "s65",
         "id": "USER01",
         "name": {},
-        "updated_at": "s68"
+        "updatedAt": "s68"
       },
       "USER02": {
-        "created_at": "s96",
+        "createdAt": "s96",
         "email": "s97",
         "id": "USER02",
         "name": {},
-        "updated_at": "s9a"
+        "updatedAt": "s9a"
       }
     }
   },
   "new": {
     "user": {
       "user_ref01": {
-        "created_at": "sc8",
+        "createdAt": "sc8",
         "email": "sc9",
         "name": {},
-        "updated_at": "scc"
+        "updatedAt": "scc"
       }
     }
   }

@@ -7,54 +7,54 @@
 -- edit by hand.
 
 ---@class Fact
----@field created_at? string
+---@field createdAt? string
 ---@field deleted? boolean
 ---@field id string
 ---@field text string
 ---@field type string
----@field updated_at? string
----@field upvote? number
+---@field updatedAt? string
+---@field upvotes? number
 ---@field used? boolean
 ---@field user? string
----@field user_upvoted? boolean
+---@field userUpvoted? boolean
 
 ---@class FactLoadMatch
----@field created_at? string
+---@field createdAt? string
 ---@field deleted? boolean
 ---@field id string
 ---@field text? string
 ---@field type? string
----@field updated_at? string
----@field upvote? number
+---@field updatedAt? string
+---@field upvotes? number
 ---@field used? boolean
 ---@field user? string
----@field user_upvoted? boolean
+---@field userUpvoted? boolean
 
 ---@class FactListMatch
----@field created_at? string
+---@field createdAt? string
 ---@field deleted? boolean
 ---@field id? string
 ---@field text? string
 ---@field type? string
----@field updated_at? string
----@field upvote? number
+---@field updatedAt? string
+---@field upvotes? number
 ---@field used? boolean
 ---@field user? string
----@field user_upvoted? boolean
+---@field userUpvoted? boolean
 
 ---@class User
----@field created_at? string
+---@field createdAt? string
 ---@field email? string
 ---@field id string
 ---@field name? table
----@field updated_at? string
+---@field updatedAt? string
 
 ---@class UserListMatch
----@field created_at? string
+---@field createdAt? string
 ---@field email? string
 ---@field id? string
 ---@field name? table
----@field updated_at? string
+---@field updatedAt? string
 
 local M = {}
 

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ CatFactUtility::setRegistrar(function (CatFactUtility $u): void {
     $u->prepare_params = [CatFactPrepareParams::class, 'call'];
     $u->prepare_path = [CatFactPreparePath::class, 'call'];
     $u->prepare_query = [CatFactPrepareQuery::class, 'call'];
+    $u->graphql_body = [CatFactGraphql::class, 'body'];
+    $u->graphql_errors = [CatFactGraphql::class, 'errors'];
     $u->result_basic = [CatFactResultBasic::class, 'call'];
     $u->result_body = [CatFactResultBody::class, 'call'];
     $u->result_headers = [CatFactResultHeaders::class, 'call'];

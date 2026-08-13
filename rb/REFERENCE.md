@@ -98,16 +98,16 @@ fact = client.Fact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `String` | No |  |
+| `createdAt` | `String` | No |  |
 | `deleted` | `Boolean` | No |  |
 | `id` | `String` | Yes |  |
 | `text` | `String` | Yes |  |
 | `type` | `String` | Yes |  |
-| `updated_at` | `String` | No |  |
-| `upvote` | `Integer` | No |  |
+| `updatedAt` | `String` | No |  |
+| `upvotes` | `Integer` | No |  |
 | `used` | `Boolean` | No |  |
 | `user` | `String` | No |  |
-| `user_upvoted` | `Boolean` | No |  |
+| `userUpvoted` | `Boolean` | No |  |
 
 ### Operations
 
@@ -167,11 +167,11 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `String` | No |  |
+| `createdAt` | `String` | No |  |
 | `email` | `String` | No |  |
 | `id` | `String` | Yes |  |
 | `name` | `Hash` | No |  |
-| `updated_at` | `String` | No |  |
+| `updatedAt` | `String` | No |  |
 
 ### Operations
 

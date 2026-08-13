@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import CatFactControl
-from core.error import CatFactError
-from core.result import CatFactResult
-from core.spec import CatFactSpec
+from catfact_sdk.config import make_config
+from catfact_sdk.features import _make_feature
+from catfact_sdk.core.control import CatFactControl
+from catfact_sdk.core.error import CatFactError
+from catfact_sdk.core.result import CatFactResult
+from catfact_sdk.core.spec import CatFactSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -15,65 +15,65 @@ declare(strict_types=1);
 /** Fact entity data model. */
 class Fact
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?bool $deleted = null;
     public string $id;
     public string $text;
     public string $type;
-    public ?string $updated_at = null;
-    public ?int $upvote = null;
+    public ?string $updatedAt = null;
+    public ?int $upvotes = null;
     public ?bool $used = null;
     public ?string $user = null;
-    public ?bool $user_upvoted = null;
+    public ?bool $userUpvoted = null;
 }
 
 /** Request payload for Fact#load. */
 class FactLoadMatch
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?bool $deleted = null;
     public string $id;
     public ?string $text = null;
     public ?string $type = null;
-    public ?string $updated_at = null;
-    public ?int $upvote = null;
+    public ?string $updatedAt = null;
+    public ?int $upvotes = null;
     public ?bool $used = null;
     public ?string $user = null;
-    public ?bool $user_upvoted = null;
+    public ?bool $userUpvoted = null;
 }
 
 /** Request payload for Fact#list. */
 class FactListMatch
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?bool $deleted = null;
     public ?string $id = null;
     public ?string $text = null;
     public ?string $type = null;
-    public ?string $updated_at = null;
-    public ?int $upvote = null;
+    public ?string $updatedAt = null;
+    public ?int $upvotes = null;
     public ?bool $used = null;
     public ?string $user = null;
-    public ?bool $user_upvoted = null;
+    public ?bool $userUpvoted = null;
 }
 
 /** User entity data model. */
 class User
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?string $email = null;
     public string $id;
     public ?array $name = null;
-    public ?string $updated_at = null;
+    public ?string $updatedAt = null;
 }
 
 /** Request payload for User#list. */
 class UserListMatch
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?string $email = null;
     public ?string $id = null;
     public ?array $name = null;
-    public ?string $updated_at = null;
+    public ?string $updatedAt = null;
 }
 

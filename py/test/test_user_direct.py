@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from catfact_sdk.utility.voxgig_struct import voxgig_struct as vs
 from catfact_sdk import CatFactSDK
-from core import helpers
+from catfact_sdk.core import helpers
 from test import runner
 
 
@@ -58,16 +58,16 @@ def _user_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "CATFACT_TEST_USER_ENTID": {},
-        "CATFACT_TEST_LIVE": "FALSE",
-        "CATFACT_APIKEY": "NONE",
+        "CAT_FACT_TEST_USER_ENTID": {},
+        "CAT_FACT_TEST_LIVE": "FALSE",
+        "CAT_FACT_APIKEY": "NONE",
     })
 
-    live = env.get("CATFACT_TEST_LIVE") == "TRUE"
+    live = env.get("CAT_FACT_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("CATFACT_APIKEY"),
+            "apikey": env.get("CAT_FACT_APIKEY"),
         }
         client = CatFactSDK(merged_opts)
         return {

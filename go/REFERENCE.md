@@ -103,16 +103,16 @@ fmt.Println(fact.GetName()) // "fact"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `deleted` | `bool` | No |  |
 | `id` | `string` | Yes |  |
 | `text` | `string` | Yes |  |
 | `type` | `string` | Yes |  |
-| `updated_at` | `string` | No |  |
-| `upvote` | `int` | No |  |
+| `updatedAt` | `string` | No |  |
+| `upvotes` | `int` | No |  |
 | `used` | `bool` | No |  |
 | `user` | `string` | No |  |
-| `user_upvoted` | `bool` | No |  |
+| `userUpvoted` | `bool` | No |  |
 
 ### Operations
 
@@ -175,11 +175,11 @@ fmt.Println(user.GetName()) // "user"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `email` | `string` | No |  |
 | `id` | `string` | Yes |  |
 | `name` | `map[string]any` | No |  |
-| `updated_at` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 
 ### Operations
 

@@ -55,7 +55,7 @@ except Exception as err:
 
 ### 3. Load a fact
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -139,7 +139,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CatFactSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 fact = client.Fact().list()
 # fact contains the mock response record
 ```
@@ -239,7 +240,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -261,16 +262,16 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `deleted` |  |
 | `id` |  |
 | `text` |  |
 | `type` |  |
-| `updated_at` |  |
-| `upvote` |  |
+| `updatedAt` |  |
+| `upvotes` |  |
 | `used` |  |
 | `user` |  |
-| `user_upvoted` |  |
+| `userUpvoted` |  |
 
 Operations: List, Load.
 
@@ -280,11 +281,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `email` |  |
 | `id` |  |
 | `name` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 
 Operations: List.
 
@@ -310,16 +311,16 @@ Create an instance: `fact = client.Fact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `str` |  |
+| `createdAt` | `str` |  |
 | `deleted` | `bool` |  |
 | `id` | `str` |  |
 | `text` | `str` |  |
 | `type` | `str` |  |
-| `updated_at` | `str` |  |
-| `upvote` | `int` |  |
+| `updatedAt` | `str` |  |
+| `upvotes` | `int` |  |
 | `used` | `bool` |  |
 | `user` | `str` |  |
-| `user_upvoted` | `bool` |  |
+| `userUpvoted` | `bool` |  |
 
 #### Example: Load
 
@@ -348,11 +349,11 @@ Create an instance: `user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `str` |  |
+| `createdAt` | `str` |  |
 | `email` | `str` |  |
 | `id` | `str` |  |
 | `name` | `dict` |  |
-| `updated_at` | `str` |  |
+| `updatedAt` | `str` |  |
 
 #### Example: List
 

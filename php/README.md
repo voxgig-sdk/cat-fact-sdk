@@ -40,7 +40,7 @@ try {
     // list() returns an array of Fact records — iterate directly.
     $facts = $client->Fact()->list();
     foreach ($facts as $item) {
-        echo $item["id"] . " " . $item["created_at"] . "\n";
+        echo $item["id"] . " " . $item["createdAt"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -51,7 +51,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Fact record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Fact record (throws on error).
     $fact = $client->Fact()->load(["id" => "example_id"]);
     print_r($fact);
 } catch (\Throwable $err) {
@@ -142,7 +142,8 @@ $client = CatFactSDK::test([
     "entity" => ["fact" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $fact = $client->Fact()->list();
 print_r($fact);
 ```
@@ -245,7 +246,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -267,16 +268,16 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `deleted` |  |
 | `id` |  |
 | `text` |  |
 | `type` |  |
-| `updated_at` |  |
-| `upvote` |  |
+| `updatedAt` |  |
+| `upvotes` |  |
 | `used` |  |
 | `user` |  |
-| `user_upvoted` |  |
+| `userUpvoted` |  |
 
 Operations: List, Load.
 
@@ -286,11 +287,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `email` |  |
 | `id` |  |
 | `name` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 
 Operations: List.
 
@@ -316,21 +317,21 @@ Create an instance: `$fact = $client->Fact();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `deleted` | `bool` |  |
 | `id` | `string` |  |
 | `text` | `string` |  |
 | `type` | `string` |  |
-| `updated_at` | `string` |  |
-| `upvote` | `int` |  |
+| `updatedAt` | `string` |  |
+| `upvotes` | `int` |  |
 | `used` | `bool` |  |
 | `user` | `string` |  |
-| `user_upvoted` | `bool` |  |
+| `userUpvoted` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Fact record (throws on error).
+// load() returns the ENTITY — call data_get() for the Fact record (throws on error).
 $fact = $client->Fact()->load(["id" => "fact_id"]);
 ```
 
@@ -356,11 +357,11 @@ Create an instance: `$user = $client->User();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `email` | `string` |  |
 | `id` | `string` |  |
 | `name` | `array` |  |
-| `updated_at` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: List
 

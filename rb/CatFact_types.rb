@@ -10,7 +10,7 @@
 
 # Fact entity data model.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] deleted
@@ -25,10 +25,10 @@
 # @!attribute [rw] type
 #   @return [String]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] upvote
+# @!attribute [rw] upvotes
 #   @return [Integer, nil]
 #
 # @!attribute [rw] used
@@ -37,25 +37,25 @@
 # @!attribute [rw] user
 #   @return [String, nil]
 #
-# @!attribute [rw] user_upvoted
+# @!attribute [rw] userUpvoted
 #   @return [Boolean, nil]
 Fact = Struct.new(
-  :created_at,
+  :createdAt,
   :deleted,
   :id,
   :text,
   :type,
-  :updated_at,
-  :upvote,
+  :updatedAt,
+  :upvotes,
   :used,
   :user,
-  :user_upvoted,
+  :userUpvoted,
   keyword_init: true
 )
 
 # Request payload for Fact#load.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] deleted
@@ -70,10 +70,10 @@ Fact = Struct.new(
 # @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] upvote
+# @!attribute [rw] upvotes
 #   @return [Integer, nil]
 #
 # @!attribute [rw] used
@@ -82,25 +82,25 @@ Fact = Struct.new(
 # @!attribute [rw] user
 #   @return [String, nil]
 #
-# @!attribute [rw] user_upvoted
+# @!attribute [rw] userUpvoted
 #   @return [Boolean, nil]
 FactLoadMatch = Struct.new(
-  :created_at,
+  :createdAt,
   :deleted,
   :id,
   :text,
   :type,
-  :updated_at,
-  :upvote,
+  :updatedAt,
+  :upvotes,
   :used,
   :user,
-  :user_upvoted,
+  :userUpvoted,
   keyword_init: true
 )
 
 # Request payload for Fact#list.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] deleted
@@ -115,10 +115,10 @@ FactLoadMatch = Struct.new(
 # @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] upvote
+# @!attribute [rw] upvotes
 #   @return [Integer, nil]
 #
 # @!attribute [rw] used
@@ -127,25 +127,25 @@ FactLoadMatch = Struct.new(
 # @!attribute [rw] user
 #   @return [String, nil]
 #
-# @!attribute [rw] user_upvoted
+# @!attribute [rw] userUpvoted
 #   @return [Boolean, nil]
 FactListMatch = Struct.new(
-  :created_at,
+  :createdAt,
   :deleted,
   :id,
   :text,
   :type,
-  :updated_at,
-  :upvote,
+  :updatedAt,
+  :upvotes,
   :used,
   :user,
-  :user_upvoted,
+  :userUpvoted,
   keyword_init: true
 )
 
 # User entity data model.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] email
@@ -157,20 +157,20 @@ FactListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [Hash, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 User = Struct.new(
-  :created_at,
+  :createdAt,
   :email,
   :id,
   :name,
-  :updated_at,
+  :updatedAt,
   keyword_init: true
 )
 
 # Request payload for User#list.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] email
@@ -182,14 +182,14 @@ User = Struct.new(
 # @!attribute [rw] name
 #   @return [Hash, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 UserListMatch = Struct.new(
-  :created_at,
+  :createdAt,
   :email,
   :id,
   :name,
-  :updated_at,
+  :updatedAt,
   keyword_init: true
 )
 

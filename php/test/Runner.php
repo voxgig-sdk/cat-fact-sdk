@@ -43,8 +43,8 @@ class CatFactTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('CATFACT_TEST_LIVE');
-        $override = self::getenv('CATFACT_TEST_OVERRIDE');
+        $live = self::getenv('CAT_FACT_TEST_LIVE');
+        $override = self::getenv('CAT_FACT_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class CatFactTestRunner
             }
         }
 
-        $explain = self::getenv('CATFACT_TEST_EXPLAIN');
+        $explain = self::getenv('CAT_FACT_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['CATFACT_TEST_EXPLAIN'] = $explain;
+            $m['CAT_FACT_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

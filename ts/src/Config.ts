@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'CatFact',
   }
 
 
@@ -63,7 +63,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "created_at",
+          "name": "createdAt",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -98,14 +98,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "updated_at",
+          "name": "updatedAt",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "upvote",
+          "name": "upvotes",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 6
@@ -126,7 +126,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "user_upvoted",
+          "name": "userUpvoted",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 9
@@ -162,6 +162,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/facts",
               "parts": [
@@ -210,6 +211,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/facts/random",
               "parts": [
@@ -241,7 +243,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "created_at",
+          "name": "createdAt",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -269,7 +271,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "updated_at",
+          "name": "updatedAt",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
@@ -284,6 +286,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/users",
               "parts": [

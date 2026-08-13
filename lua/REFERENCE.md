@@ -95,16 +95,16 @@ local fact = client:Fact(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `deleted` | `boolean` | No |  |
 | `id` | `string` | Yes |  |
 | `text` | `string` | Yes |  |
 | `type` | `string` | Yes |  |
-| `updated_at` | `string` | No |  |
-| `upvote` | `number` | No |  |
+| `updatedAt` | `string` | No |  |
+| `upvotes` | `number` | No |  |
 | `used` | `boolean` | No |  |
 | `user` | `string` | No |  |
-| `user_upvoted` | `boolean` | No |  |
+| `userUpvoted` | `boolean` | No |  |
 
 ### Operations
 
@@ -164,11 +164,11 @@ local user = client:User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `email` | `string` | No |  |
 | `id` | `string` | Yes |  |
 | `name` | `table` | No |  |
-| `updated_at` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 
 ### Operations
 

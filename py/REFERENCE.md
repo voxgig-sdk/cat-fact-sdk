@@ -92,16 +92,16 @@ fact = client.Fact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `str` | No |  |
+| `createdAt` | `str` | No |  |
 | `deleted` | `bool` | No |  |
 | `id` | `str` | Yes |  |
 | `text` | `str` | Yes |  |
 | `type` | `str` | Yes |  |
-| `updated_at` | `str` | No |  |
-| `upvote` | `int` | No |  |
+| `updatedAt` | `str` | No |  |
+| `upvotes` | `int` | No |  |
 | `used` | `bool` | No |  |
 | `user` | `str` | No |  |
-| `user_upvoted` | `bool` | No |  |
+| `userUpvoted` | `bool` | No |  |
 
 ### Operations
 
@@ -162,11 +162,11 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `str` | No |  |
+| `createdAt` | `str` | No |  |
 | `email` | `str` | No |  |
 | `id` | `str` | Yes |  |
 | `name` | `dict` | No |  |
-| `updated_at` | `str` | No |  |
+| `updatedAt` | `str` | No |  |
 
 ### Operations
 

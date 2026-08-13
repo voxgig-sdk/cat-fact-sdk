@@ -275,16 +275,16 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"created_at"` |  |
+| `"createdAt"` |  |
 | `"deleted"` |  |
 | `"id"` |  |
 | `"text"` |  |
 | `"type"` |  |
-| `"updated_at"` |  |
-| `"upvote"` |  |
+| `"updatedAt"` |  |
+| `"upvotes"` |  |
 | `"used"` |  |
 | `"user"` |  |
-| `"user_upvoted"` |  |
+| `"userUpvoted"` |  |
 
 Operations: List, Load.
 
@@ -294,11 +294,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `"created_at"` |  |
+| `"createdAt"` |  |
 | `"email"` |  |
 | `"id"` |  |
 | `"name"` |  |
-| `"updated_at"` |  |
+| `"updatedAt"` |  |
 
 Operations: List.
 
@@ -324,16 +324,16 @@ Create an instance: `fact := client.Fact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `deleted` | `bool` |  |
 | `id` | `string` |  |
 | `text` | `string` |  |
 | `type` | `string` |  |
-| `updated_at` | `string` |  |
-| `upvote` | `int` |  |
+| `updatedAt` | `string` |  |
+| `upvotes` | `int` |  |
 | `used` | `bool` |  |
 | `user` | `string` |  |
-| `user_upvoted` | `bool` |  |
+| `userUpvoted` | `bool` |  |
 
 #### Example: Load
 
@@ -370,11 +370,11 @@ Create an instance: `user := client.User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `email` | `string` |  |
 | `id` | `string` |  |
 | `name` | `map[string]any` |  |
-| `updated_at` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: List
 

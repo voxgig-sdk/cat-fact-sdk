@@ -6,57 +6,63 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Fact {
-  created_at?: string
+  createdAt?: string
   deleted?: boolean
   id: string
   text: string
   type: string
-  updated_at?: string
-  upvote?: number
+  updatedAt?: string
+  upvotes?: number
   used?: boolean
   user?: string
-  user_upvoted?: boolean
+  userUpvoted?: boolean
 }
 
 export interface FactLoadMatch {
-  created_at?: string
+  createdAt?: string
   deleted?: boolean
   id: string
   text?: string
   type?: string
-  updated_at?: string
-  upvote?: number
+  updatedAt?: string
+  upvotes?: number
   used?: boolean
   user?: string
-  user_upvoted?: boolean
+  userUpvoted?: boolean
+
+  // Selects a custom action instead of the plain load:
+  //   'random'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface FactListMatch {
-  created_at?: string
+  createdAt?: string
   deleted?: boolean
   id?: string
   text?: string
   type?: string
-  updated_at?: string
-  upvote?: number
+  updatedAt?: string
+  upvotes?: number
   used?: boolean
   user?: string
-  user_upvoted?: boolean
+  userUpvoted?: boolean
 }
 
 export interface User {
-  created_at?: string
+  createdAt?: string
   email?: string
   id: string
   name?: Record<string, any>
-  updated_at?: string
+  updatedAt?: string
 }
 
 export interface UserListMatch {
-  created_at?: string
+  createdAt?: string
   email?: string
   id?: string
   name?: Record<string, any>
-  updated_at?: string
+  updatedAt?: string
 }
 

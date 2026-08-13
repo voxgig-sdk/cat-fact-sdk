@@ -26,8 +26,8 @@ import {
 describe('FactEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when CATFACT_TEST_LIVE=TRUE.
-  afterEach(liveDelay('CATFACT_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when CAT_FACT_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CAT_FACT_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = CatFactSDK.test()
@@ -63,13 +63,13 @@ describe('FactEntity', async () => {
     const fact_ref01_ent = client.Fact()
     const fact_ref01_match: any = {}
 
-    const fact_ref01_list = await fact_ref01_ent.list(fact_ref01_match)
+    const fact_ref01_list = (await fact_ref01_ent.list(fact_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const fact_ref01_match_dt0: any = {}
     fact_ref01_match_dt0.id = fact_ref01_data.id
-    const fact_ref01_data_dt0 = await fact_ref01_ent.load(fact_ref01_match_dt0)
+    const fact_ref01_data_dt0 = (await fact_ref01_ent.load(fact_ref01_match_dt0)).data()
     assert(fact_ref01_data_dt0.id === fact_ref01_data.id)
 
 

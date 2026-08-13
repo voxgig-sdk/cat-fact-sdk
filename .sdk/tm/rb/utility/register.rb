@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ CatFactUtility.registrar = ->(u) {
   u.prepare_params = CatFactUtilities::PrepareParams
   u.prepare_path = CatFactUtilities::PreparePath
   u.prepare_query = CatFactUtilities::PrepareQuery
+  u.graphql_body = CatFactUtilities::GraphqlBody
+  u.graphql_errors = CatFactUtilities::GraphqlErrors
   u.result_basic = CatFactUtilities::ResultBasic
   u.result_body = CatFactUtilities::ResultBody
   u.result_headers = CatFactUtilities::ResultHeaders

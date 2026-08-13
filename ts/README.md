@@ -37,7 +37,9 @@ const client = new CatFactSDK({
 
 ### 2. List fact records
 
-`list()` resolves to an array of Fact objects — iterate it directly:
+`list()` resolves to an array of Fact ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const facts = await client.Fact().list()
@@ -135,7 +137,8 @@ Create a mock client for unit testing — no server required:
 const client = CatFactSDK.test()
 
 const fact = await client.Fact().list()
-// fact is a bare entity populated with mock response data
+// fact is the entity, populated with mock response data
+// — call fact.data() for the record itself
 console.log(fact)
 ```
 
@@ -306,16 +309,16 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `deleted` |  |
 | `id` |  |
 | `text` |  |
 | `type` |  |
-| `updated_at` |  |
-| `upvote` |  |
+| `updatedAt` |  |
+| `upvotes` |  |
 | `used` |  |
 | `user` |  |
-| `user_upvoted` |  |
+| `userUpvoted` |  |
 
 Operations: list, load.
 
@@ -325,11 +328,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `email` |  |
 | `id` |  |
 | `name` |  |
-| `updated_at` |  |
+| `updatedAt` |  |
 
 Operations: list.
 
@@ -355,16 +358,16 @@ Create an instance: `const fact = client.Fact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `deleted` | `boolean` |  |
 | `id` | `string` |  |
 | `text` | `string` |  |
 | `type` | `string` |  |
-| `updated_at` | `string` |  |
-| `upvote` | `number` |  |
+| `updatedAt` | `string` |  |
+| `upvotes` | `number` |  |
 | `used` | `boolean` |  |
 | `user` | `string` |  |
-| `user_upvoted` | `boolean` |  |
+| `userUpvoted` | `boolean` |  |
 
 #### Example: Load
 
@@ -393,11 +396,11 @@ Create an instance: `const user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `email` | `string` |  |
 | `id` | `string` |  |
 | `name` | `Record<string, any>` |  |
-| `updated_at` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: List
 
