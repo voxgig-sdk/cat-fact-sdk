@@ -15,7 +15,7 @@ require_relative "../CatFact_sdk"
 module CatFactFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = CatFactConfig.make_config["feature"]
+    f = CatFactConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
