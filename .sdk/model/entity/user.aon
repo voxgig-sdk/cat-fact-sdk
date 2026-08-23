@@ -8,16 +8,19 @@ main: kit: entity: user: {
     {
       name: "createdAt"
       req: false
+      short: "Timestamp when the user account was created"
       type: "`$STRING`"
     }
     {
       name: "email"
       req: false
+      short: "User's email address"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: true
+      short: "Unique identifier for the user"
       type: "`$STRING`"
     }
     {
@@ -28,6 +31,7 @@ main: kit: entity: user: {
     {
       name: "updatedAt"
       req: false
+      short: "Timestamp when the user account was last updated"
       type: "`$STRING`"
     }
   ]

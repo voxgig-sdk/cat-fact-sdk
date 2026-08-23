@@ -262,16 +262,16 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `deleted` |  |
-| `id` |  |
-| `text` |  |
-| `type` |  |
-| `updatedAt` |  |
-| `upvotes` |  |
-| `used` |  |
-| `user` |  |
-| `userUpvoted` |  |
+| `createdAt` | Timestamp when the fact was created |
+| `deleted` | Whether the fact has been deleted |
+| `id` | Unique identifier for the fact |
+| `text` | The fact text content |
+| `type` | The type of animal the fact is about |
+| `updatedAt` | Timestamp when the fact was last updated |
+| `upvotes` | Number of upvotes the fact has received |
+| `used` | Whether the fact has been used |
+| `user` | User ID who submitted the fact |
+| `userUpvoted` | Whether the current user has upvoted this fact |
 
 Operations: List, Load.
 
@@ -281,11 +281,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
+| `createdAt` | Timestamp when the user account was created |
+| `email` | User's email address |
+| `id` | Unique identifier for the user |
 | `name` |  |
-| `updatedAt` |  |
+| `updatedAt` | Timestamp when the user account was last updated |
 
 Operations: List.
 
@@ -311,16 +311,16 @@ Create an instance: `fact = client.Fact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `str` |  |
-| `deleted` | `bool` |  |
-| `id` | `str` |  |
-| `text` | `str` |  |
-| `type` | `str` |  |
-| `updatedAt` | `str` |  |
-| `upvotes` | `int` |  |
-| `used` | `bool` |  |
-| `user` | `str` |  |
-| `userUpvoted` | `bool` |  |
+| `createdAt` | `str` | Timestamp when the fact was created |
+| `deleted` | `bool` | Whether the fact has been deleted |
+| `id` | `str` | Unique identifier for the fact |
+| `text` | `str` | The fact text content |
+| `type` | `str` | The type of animal the fact is about |
+| `updatedAt` | `str` | Timestamp when the fact was last updated |
+| `upvotes` | `int` | Number of upvotes the fact has received |
+| `used` | `bool` | Whether the fact has been used |
+| `user` | `str` | User ID who submitted the fact |
+| `userUpvoted` | `bool` | Whether the current user has upvoted this fact |
 
 #### Example: Load
 
@@ -349,11 +349,11 @@ Create an instance: `user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `str` |  |
-| `email` | `str` |  |
-| `id` | `str` |  |
+| `createdAt` | `str` | Timestamp when the user account was created |
+| `email` | `str` | User's email address |
+| `id` | `str` | Unique identifier for the user |
 | `name` | `dict` |  |
-| `updatedAt` | `str` |  |
+| `updatedAt` | `str` | Timestamp when the user account was last updated |
 
 #### Example: List
 

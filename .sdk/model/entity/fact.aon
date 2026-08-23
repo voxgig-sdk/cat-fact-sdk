@@ -8,51 +8,61 @@ main: kit: entity: fact: {
     {
       name: "createdAt"
       req: false
+      short: "Timestamp when the fact was created"
       type: "`$STRING`"
     }
     {
       name: "deleted"
       req: false
+      short: "Whether the fact has been deleted"
       type: "`$BOOLEAN`"
     }
     {
       name: "id"
       req: true
+      short: "Unique identifier for the fact"
       type: "`$STRING`"
     }
     {
       name: "text"
       req: true
+      short: "The fact text content"
       type: "`$STRING`"
     }
     {
       name: "type"
       req: true
+      short: "The type of animal the fact is about"
       type: "`$STRING`"
     }
     {
       name: "updatedAt"
       req: false
+      short: "Timestamp when the fact was last updated"
       type: "`$STRING`"
     }
     {
       name: "upvotes"
       req: false
+      short: "Number of upvotes the fact has received"
       type: "`$INTEGER`"
     }
     {
       name: "used"
       req: false
+      short: "Whether the fact has been used"
       type: "`$BOOLEAN`"
     }
     {
       name: "user"
       req: false
+      short: "User ID who submitted the fact"
       type: "`$STRING`"
     }
     {
       name: "userUpvoted"
       req: false
+      short: "Whether the current user has upvoted this fact"
       type: "`$BOOLEAN`"
     }
   ]

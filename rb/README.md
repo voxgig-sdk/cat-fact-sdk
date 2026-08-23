@@ -258,16 +258,16 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `deleted` |  |
-| `id` |  |
-| `text` |  |
-| `type` |  |
-| `updatedAt` |  |
-| `upvotes` |  |
-| `used` |  |
-| `user` |  |
-| `userUpvoted` |  |
+| `createdAt` | Timestamp when the fact was created |
+| `deleted` | Whether the fact has been deleted |
+| `id` | Unique identifier for the fact |
+| `text` | The fact text content |
+| `type` | The type of animal the fact is about |
+| `updatedAt` | Timestamp when the fact was last updated |
+| `upvotes` | Number of upvotes the fact has received |
+| `used` | Whether the fact has been used |
+| `user` | User ID who submitted the fact |
+| `userUpvoted` | Whether the current user has upvoted this fact |
 
 Operations: List, Load.
 
@@ -277,11 +277,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
+| `createdAt` | Timestamp when the user account was created |
+| `email` | User's email address |
+| `id` | Unique identifier for the user |
 | `name` |  |
-| `updatedAt` |  |
+| `updatedAt` | Timestamp when the user account was last updated |
 
 Operations: List.
 
@@ -307,16 +307,16 @@ Create an instance: `fact = client.Fact`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `String` |  |
-| `deleted` | `Boolean` |  |
-| `id` | `String` |  |
-| `text` | `String` |  |
-| `type` | `String` |  |
-| `updatedAt` | `String` |  |
-| `upvotes` | `Integer` |  |
-| `used` | `Boolean` |  |
-| `user` | `String` |  |
-| `userUpvoted` | `Boolean` |  |
+| `createdAt` | `String` | Timestamp when the fact was created |
+| `deleted` | `Boolean` | Whether the fact has been deleted |
+| `id` | `String` | Unique identifier for the fact |
+| `text` | `String` | The fact text content |
+| `type` | `String` | The type of animal the fact is about |
+| `updatedAt` | `String` | Timestamp when the fact was last updated |
+| `upvotes` | `Integer` | Number of upvotes the fact has received |
+| `used` | `Boolean` | Whether the fact has been used |
+| `user` | `String` | User ID who submitted the fact |
+| `userUpvoted` | `Boolean` | Whether the current user has upvoted this fact |
 
 #### Example: Load
 
@@ -347,11 +347,11 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `String` |  |
-| `email` | `String` |  |
-| `id` | `String` |  |
+| `createdAt` | `String` | Timestamp when the user account was created |
+| `email` | `String` | User's email address |
+| `id` | `String` | Unique identifier for the user |
 | `name` | `Hash` |  |
-| `updatedAt` | `String` |  |
+| `updatedAt` | `String` | Timestamp when the user account was last updated |
 
 #### Example: List
 

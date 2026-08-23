@@ -98,16 +98,16 @@ fact = client.Fact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `String` | No |  |
-| `deleted` | `Boolean` | No |  |
-| `id` | `String` | Yes |  |
-| `text` | `String` | Yes |  |
-| `type` | `String` | Yes |  |
-| `updatedAt` | `String` | No |  |
-| `upvotes` | `Integer` | No |  |
-| `used` | `Boolean` | No |  |
-| `user` | `String` | No |  |
-| `userUpvoted` | `Boolean` | No |  |
+| `createdAt` | `String` | No | Timestamp when the fact was created |
+| `deleted` | `Boolean` | No | Whether the fact has been deleted |
+| `id` | `String` | Yes | Unique identifier for the fact |
+| `text` | `String` | Yes | The fact text content |
+| `type` | `String` | Yes | The type of animal the fact is about |
+| `updatedAt` | `String` | No | Timestamp when the fact was last updated |
+| `upvotes` | `Integer` | No | Number of upvotes the fact has received |
+| `used` | `Boolean` | No | Whether the fact has been used |
+| `user` | `String` | No | User ID who submitted the fact |
+| `userUpvoted` | `Boolean` | No | Whether the current user has upvoted this fact |
 
 ### Operations
 
@@ -167,11 +167,11 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `String` | No |  |
-| `email` | `String` | No |  |
-| `id` | `String` | Yes |  |
+| `createdAt` | `String` | No | Timestamp when the user account was created |
+| `email` | `String` | No | User's email address |
+| `id` | `String` | Yes | Unique identifier for the user |
 | `name` | `Hash` | No |  |
-| `updatedAt` | `String` | No |  |
+| `updatedAt` | `String` | No | Timestamp when the user account was last updated |
 
 ### Operations
 

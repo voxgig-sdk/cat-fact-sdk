@@ -103,16 +103,16 @@ fmt.Println(fact.GetName()) // "fact"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No |  |
-| `deleted` | `bool` | No |  |
-| `id` | `string` | Yes |  |
-| `text` | `string` | Yes |  |
-| `type` | `string` | Yes |  |
-| `updatedAt` | `string` | No |  |
-| `upvotes` | `int` | No |  |
-| `used` | `bool` | No |  |
-| `user` | `string` | No |  |
-| `userUpvoted` | `bool` | No |  |
+| `createdAt` | `string` | No | Timestamp when the fact was created |
+| `deleted` | `bool` | No | Whether the fact has been deleted |
+| `id` | `string` | Yes | Unique identifier for the fact |
+| `text` | `string` | Yes | The fact text content |
+| `type` | `string` | Yes | The type of animal the fact is about |
+| `updatedAt` | `string` | No | Timestamp when the fact was last updated |
+| `upvotes` | `int` | No | Number of upvotes the fact has received |
+| `used` | `bool` | No | Whether the fact has been used |
+| `user` | `string` | No | User ID who submitted the fact |
+| `userUpvoted` | `bool` | No | Whether the current user has upvoted this fact |
 
 ### Operations
 
@@ -175,11 +175,11 @@ fmt.Println(user.GetName()) // "user"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No |  |
-| `email` | `string` | No |  |
-| `id` | `string` | Yes |  |
+| `createdAt` | `string` | No | Timestamp when the user account was created |
+| `email` | `string` | No | User's email address |
+| `id` | `string` | Yes | Unique identifier for the user |
 | `name` | `map[string]any` | No |  |
-| `updatedAt` | `string` | No |  |
+| `updatedAt` | `string` | No | Timestamp when the user account was last updated |
 
 ### Operations
 

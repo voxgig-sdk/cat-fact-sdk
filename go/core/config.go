@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "CatFact",
+			"slug": "cat-fact",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -37,45 +40,55 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "createdAt",
+						"short": "Timestamp when the fact was created",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "deleted",
+						"short": "Whether the fact has been deleted",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "Unique identifier for the fact",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "text",
 						"req": true,
+						"short": "The fact text content",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
 						"req": true,
+						"short": "The type of animal the fact is about",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updatedAt",
+						"short": "Timestamp when the fact was last updated",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "upvotes",
+						"short": "Number of upvotes the fact has received",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "used",
+						"short": "Whether the fact has been used",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "user",
+						"short": "User ID who submitted the fact",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "userUpvoted",
+						"short": "Whether the current user has upvoted this fact",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -176,15 +189,18 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "createdAt",
+						"short": "Timestamp when the user account was created",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "email",
+						"short": "User's email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "Unique identifier for the user",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -193,6 +209,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "updatedAt",
+						"short": "Timestamp when the user account was last updated",
 						"type": "`$STRING`",
 					},
 				},

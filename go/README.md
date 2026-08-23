@@ -6,7 +6,7 @@ The Golang SDK for the CatFact API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Fact(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -275,16 +275,16 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"createdAt"` |  |
-| `"deleted"` |  |
-| `"id"` |  |
-| `"text"` |  |
-| `"type"` |  |
-| `"updatedAt"` |  |
-| `"upvotes"` |  |
-| `"used"` |  |
-| `"user"` |  |
-| `"userUpvoted"` |  |
+| `"createdAt"` | Timestamp when the fact was created |
+| `"deleted"` | Whether the fact has been deleted |
+| `"id"` | Unique identifier for the fact |
+| `"text"` | The fact text content |
+| `"type"` | The type of animal the fact is about |
+| `"updatedAt"` | Timestamp when the fact was last updated |
+| `"upvotes"` | Number of upvotes the fact has received |
+| `"used"` | Whether the fact has been used |
+| `"user"` | User ID who submitted the fact |
+| `"userUpvoted"` | Whether the current user has upvoted this fact |
 
 Operations: List, Load.
 
@@ -294,11 +294,11 @@ API path: `/facts`
 
 | Field | Description |
 | --- | --- |
-| `"createdAt"` |  |
-| `"email"` |  |
-| `"id"` |  |
+| `"createdAt"` | Timestamp when the user account was created |
+| `"email"` | User's email address |
+| `"id"` | Unique identifier for the user |
 | `"name"` |  |
-| `"updatedAt"` |  |
+| `"updatedAt"` | Timestamp when the user account was last updated |
 
 Operations: List.
 
@@ -324,16 +324,16 @@ Create an instance: `fact := client.Fact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` |  |
-| `deleted` | `bool` |  |
-| `id` | `string` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
-| `updatedAt` | `string` |  |
-| `upvotes` | `int` |  |
-| `used` | `bool` |  |
-| `user` | `string` |  |
-| `userUpvoted` | `bool` |  |
+| `createdAt` | `string` | Timestamp when the fact was created |
+| `deleted` | `bool` | Whether the fact has been deleted |
+| `id` | `string` | Unique identifier for the fact |
+| `text` | `string` | The fact text content |
+| `type` | `string` | The type of animal the fact is about |
+| `updatedAt` | `string` | Timestamp when the fact was last updated |
+| `upvotes` | `int` | Number of upvotes the fact has received |
+| `used` | `bool` | Whether the fact has been used |
+| `user` | `string` | User ID who submitted the fact |
+| `userUpvoted` | `bool` | Whether the current user has upvoted this fact |
 
 #### Example: Load
 
@@ -370,11 +370,11 @@ Create an instance: `user := client.User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` |  |
-| `email` | `string` |  |
-| `id` | `string` |  |
+| `createdAt` | `string` | Timestamp when the user account was created |
+| `email` | `string` | User's email address |
+| `id` | `string` | Unique identifier for the user |
 | `name` | `map[string]any` |  |
-| `updatedAt` | `string` |  |
+| `updatedAt` | `string` | Timestamp when the user account was last updated |
 
 #### Example: List
 

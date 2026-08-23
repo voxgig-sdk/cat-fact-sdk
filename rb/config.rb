@@ -19,6 +19,9 @@ module CatFactConfig
     {
       "main" => {
         "name" => "CatFact",
+        "slug" => "cat-fact",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -45,45 +48,55 @@ module CatFactConfig
           "fields" => [
             {
               "name" => "createdAt",
+              "short" => "Timestamp when the fact was created",
               "type" => "`$STRING`",
             },
             {
               "name" => "deleted",
+              "short" => "Whether the fact has been deleted",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "id",
               "req" => true,
+              "short" => "Unique identifier for the fact",
               "type" => "`$STRING`",
             },
             {
               "name" => "text",
               "req" => true,
+              "short" => "The fact text content",
               "type" => "`$STRING`",
             },
             {
               "name" => "type",
               "req" => true,
+              "short" => "The type of animal the fact is about",
               "type" => "`$STRING`",
             },
             {
               "name" => "updatedAt",
+              "short" => "Timestamp when the fact was last updated",
               "type" => "`$STRING`",
             },
             {
               "name" => "upvotes",
+              "short" => "Number of upvotes the fact has received",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "used",
+              "short" => "Whether the fact has been used",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "user",
+              "short" => "User ID who submitted the fact",
               "type" => "`$STRING`",
             },
             {
               "name" => "userUpvoted",
+              "short" => "Whether the current user has upvoted this fact",
               "type" => "`$BOOLEAN`",
             },
           ],
@@ -184,15 +197,18 @@ module CatFactConfig
           "fields" => [
             {
               "name" => "createdAt",
+              "short" => "Timestamp when the user account was created",
               "type" => "`$STRING`",
             },
             {
               "name" => "email",
+              "short" => "User's email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
               "req" => true,
+              "short" => "Unique identifier for the user",
               "type" => "`$STRING`",
             },
             {
@@ -201,6 +217,7 @@ module CatFactConfig
             },
             {
               "name" => "updatedAt",
+              "short" => "Timestamp when the user account was last updated",
               "type" => "`$STRING`",
             },
           ],
