@@ -42,6 +42,7 @@ class CatFactConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
