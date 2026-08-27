@@ -19,28 +19,12 @@
 ---@field userUpvoted? boolean
 
 ---@class FactLoadMatch
----@field createdAt? string
----@field deleted? boolean
----@field id string
----@field text? string
----@field type? string
----@field updatedAt? string
----@field upvotes? number
----@field used? boolean
----@field user? string
----@field userUpvoted? boolean
+---@field amount? number
+---@field animal_type? string
 
 ---@class FactListMatch
----@field createdAt? string
----@field deleted? boolean
----@field id? string
----@field text? string
----@field type? string
----@field updatedAt? string
----@field upvotes? number
----@field used? boolean
----@field user? string
----@field userUpvoted? boolean
+---@field amount? number
+---@field animal_type? string
 
 ---@class User
 ---@field createdAt? string

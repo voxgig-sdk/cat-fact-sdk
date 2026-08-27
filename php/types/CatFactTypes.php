@@ -30,31 +30,15 @@ class Fact
 /** Request payload for Fact#load. */
 class FactLoadMatch
 {
-    public ?string $createdAt = null;
-    public ?bool $deleted = null;
-    public string $id;
-    public ?string $text = null;
-    public ?string $type = null;
-    public ?string $updatedAt = null;
-    public ?int $upvotes = null;
-    public ?bool $used = null;
-    public ?string $user = null;
-    public ?bool $userUpvoted = null;
+    public ?int $amount = null;
+    public ?string $animal_type = null;
 }
 
 /** Request payload for Fact#list. */
 class FactListMatch
 {
-    public ?string $createdAt = null;
-    public ?bool $deleted = null;
-    public ?string $id = null;
-    public ?string $text = null;
-    public ?string $type = null;
-    public ?string $updatedAt = null;
-    public ?int $upvotes = null;
-    public ?bool $used = null;
-    public ?string $user = null;
-    public ?bool $userUpvoted = null;
+    public ?int $amount = null;
+    public ?string $animal_type = null;
 }
 
 /** User entity data model. */

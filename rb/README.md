@@ -51,7 +51,7 @@ end
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the Fact record (raises on error).
-  fact = client.Fact.load({ "id" => "example_id" })
+  fact = client.Fact.load()
   puts fact
 rescue => err
   warn "load failed: #{err}"
@@ -128,13 +128,10 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = CatFactSDK.test({
-  "entity" => { "fact" => { "test01" => { "id" => "test01" } } },
-})
+client = CatFactSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
@@ -322,7 +319,7 @@ Create an instance: `fact = client.Fact`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Fact record (raises on error).
-fact = client.Fact.load({ "id" => "fact_id" })
+fact = client.Fact.load()
 ```
 
 #### Example: List
@@ -359,6 +356,29 @@ Create an instance: `user = client.User`
 # list returns an Array of User records (raises on error).
 users = client.User.list
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

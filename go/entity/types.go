@@ -28,30 +28,14 @@ type Fact struct {
 
 // FactLoadMatch is the typed request payload for Fact.LoadTyped.
 type FactLoadMatch struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Deleted *bool `json:"deleted,omitempty"`
-	Id string `json:"id"`
-	Text *string `json:"text,omitempty"`
-	Type *string `json:"type,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	Upvotes *int `json:"upvotes,omitempty"`
-	Used *bool `json:"used,omitempty"`
-	User *string `json:"user,omitempty"`
-	UserUpvoted *bool `json:"userUpvoted,omitempty"`
+	Amount *int `json:"amount,omitempty"`
+	AnimalType *string `json:"animal_type,omitempty"`
 }
 
 // FactListMatch is the typed request payload for Fact.ListTyped.
 type FactListMatch struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Deleted *bool `json:"deleted,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Type *string `json:"type,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	Upvotes *int `json:"upvotes,omitempty"`
-	Used *bool `json:"used,omitempty"`
-	User *string `json:"user,omitempty"`
-	UserUpvoted *bool `json:"userUpvoted,omitempty"`
+	Amount *int `json:"amount,omitempty"`
+	AnimalType *string `json:"animal_type,omitempty"`
 }
 
 // User is the typed data model for the user entity.

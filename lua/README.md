@@ -52,7 +52,7 @@ end
 ### 3. Load a fact
 
 ```lua
-local fact, err = client:Fact():load({ id = "example_id" })
+local fact, err = client:Fact():load()
 if err then error(err) end
 print(fact)
 ```
@@ -233,7 +233,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local fact, err = client:Fact():load({ id = "example_id" })
+    local fact, err = client:Fact():load()
     if err then error(err) end
     -- fact is the loaded record
 
@@ -309,7 +309,7 @@ Create an instance: `local fact = client:Fact(nil)`
 #### Example: Load
 
 ```lua
-local fact, err = client:Fact():load({ id = "fact_id" })
+local fact, err = client:Fact():load()
 ```
 
 #### Example: List
@@ -344,6 +344,29 @@ Create an instance: `local user = client:User(nil)`
 ```lua
 local users, err = client:User():list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

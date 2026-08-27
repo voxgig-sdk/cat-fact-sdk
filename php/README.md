@@ -52,7 +52,7 @@ try {
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Fact record (throws on error).
-    $fact = $client->Fact()->load(["id" => "example_id"]);
+    $fact = $client->Fact()->load();
     print_r($fact);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -134,13 +134,10 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = CatFactSDK::test([
-    "entity" => ["fact" => ["test01" => ["id" => "test01"]]],
-]);
+$client = CatFactSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
@@ -332,7 +329,7 @@ Create an instance: `$fact = $client->Fact();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Fact record (throws on error).
-$fact = $client->Fact()->load(["id" => "fact_id"]);
+$fact = $client->Fact()->load();
 ```
 
 #### Example: List
@@ -369,6 +366,29 @@ Create an instance: `$user = $client->User();`
 // list() returns an array of User records (throws on error).
 $users = $client->User()->list();
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

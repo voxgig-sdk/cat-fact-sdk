@@ -55,91 +55,27 @@ Fact = Struct.new(
 
 # Request payload for Fact#load.
 #
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
-# @!attribute [rw] deleted
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] text
-#   @return [String, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
-#
-# @!attribute [rw] updatedAt
-#   @return [String, nil]
-#
-# @!attribute [rw] upvotes
+# @!attribute [rw] amount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] used
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] user
+# @!attribute [rw] animal_type
 #   @return [String, nil]
-#
-# @!attribute [rw] userUpvoted
-#   @return [Boolean, nil]
 FactLoadMatch = Struct.new(
-  :createdAt,
-  :deleted,
-  :id,
-  :text,
-  :type,
-  :updatedAt,
-  :upvotes,
-  :used,
-  :user,
-  :userUpvoted,
+  :amount,
+  :animal_type,
   keyword_init: true
 )
 
 # Request payload for Fact#list.
 #
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
-# @!attribute [rw] deleted
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] text
-#   @return [String, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
-#
-# @!attribute [rw] updatedAt
-#   @return [String, nil]
-#
-# @!attribute [rw] upvotes
+# @!attribute [rw] amount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] used
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] user
+# @!attribute [rw] animal_type
 #   @return [String, nil]
-#
-# @!attribute [rw] userUpvoted
-#   @return [Boolean, nil]
 FactListMatch = Struct.new(
-  :createdAt,
-  :deleted,
-  :id,
-  :text,
-  :type,
-  :updatedAt,
-  :upvotes,
-  :used,
-  :user,
-  :userUpvoted,
+  :amount,
+  :animal_type,
   keyword_init: true
 )
 

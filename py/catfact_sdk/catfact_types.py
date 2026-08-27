@@ -32,33 +32,14 @@ class Fact(FactRequired, total=False):
     userUpvoted: bool
 
 
-class FactLoadMatchRequired(TypedDict):
-    id: str
-
-
-class FactLoadMatch(FactLoadMatchRequired, total=False):
-    createdAt: str
-    deleted: bool
-    text: str
-    type: str
-    updatedAt: str
-    upvotes: int
-    used: bool
-    user: str
-    userUpvoted: bool
+class FactLoadMatch(TypedDict, total=False):
+    amount: int
+    animal_type: str
 
 
 class FactListMatch(TypedDict, total=False):
-    createdAt: str
-    deleted: bool
-    id: str
-    text: str
-    type: str
-    updatedAt: str
-    upvotes: int
-    used: bool
-    user: str
-    userUpvoted: bool
+    amount: int
+    animal_type: str
 
 
 class UserRequired(TypedDict):

@@ -19,16 +19,8 @@ export interface Fact {
 }
 
 export interface FactLoadMatch {
-  createdAt?: string
-  deleted?: boolean
-  id: string
-  text?: string
-  type?: string
-  updatedAt?: string
-  upvotes?: number
-  used?: boolean
-  user?: string
-  userUpvoted?: boolean
+  amount?: number
+  animal_type?: string
 
   // Selects a custom action instead of the plain load:
   //   'random'
@@ -38,16 +30,8 @@ export interface FactLoadMatch {
 }
 
 export interface FactListMatch {
-  createdAt?: string
-  deleted?: boolean
-  id?: string
-  text?: string
-  type?: string
-  updatedAt?: string
-  upvotes?: number
-  used?: boolean
-  user?: string
-  userUpvoted?: boolean
+  amount?: number
+  animal_type?: string
 }
 
 export interface User {
