@@ -36,6 +36,7 @@ local function make_config()
       ["fact"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "createdAt",
             ["short"] = "Timestamp when the fact was created",
             ["type"] = "`$STRING`",
@@ -64,6 +65,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "updatedAt",
             ["short"] = "Timestamp when the fact was last updated",
             ["type"] = "`$STRING`",
@@ -88,6 +90,10 @@ local function make_config()
             ["short"] = "Whether the current user has upvoted this fact",
             ["type"] = "`$BOOLEAN`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "fact",
         ["op"] = {
@@ -117,8 +123,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/facts",
-                ["parts"] = {
-                  "facts",
+                ["segments"] = {
+                  {
+                    ["lit"] = "facts",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -129,6 +137,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "facts",
                 },
               },
             },
@@ -159,9 +170,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/facts/random",
-                ["parts"] = {
-                  "facts",
-                  "random",
+                ["segments"] = {
+                  {
+                    ["lit"] = "facts",
+                  },
+                  {
+                    ["lit"] = "random",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "random",
@@ -174,6 +189,10 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "facts",
+                  "random",
+                },
               },
             },
           },
@@ -185,11 +204,13 @@ local function make_config()
       ["user"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "createdAt",
             ["short"] = "Timestamp when the user account was created",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "email",
             ["name"] = "email",
             ["short"] = "User's email address",
             ["type"] = "`$STRING`",
@@ -205,10 +226,15 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "updatedAt",
             ["short"] = "Timestamp when the user account was last updated",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "user",
         ["op"] = {
@@ -221,13 +247,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/users",
-                ["parts"] = {
-                  "users",
+                ["segments"] = {
+                  {
+                    ["lit"] = "users",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "users",
                 },
               },
             },

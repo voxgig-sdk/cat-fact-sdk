@@ -6,12 +6,14 @@ main: kit: entity: user: {
 
   fields: [
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "Timestamp when the user account was created"
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "email"
       req: false
       short: "User's email address"
@@ -29,6 +31,7 @@ main: kit: entity: user: {
       type: "`$OBJECT`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       short: "Timestamp when the user account was last updated"
@@ -49,8 +52,10 @@ main: kit: entity: user: {
         {
           method: "GET"
           orig: "/users"
-          parts: [
-            "users"
+          segments: [
+            {
+              lit: "users"
+            }
           ]
           transform: {
             req: "`reqdata`"

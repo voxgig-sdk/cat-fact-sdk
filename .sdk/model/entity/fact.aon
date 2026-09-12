@@ -6,6 +6,7 @@ main: kit: entity: fact: {
 
   fields: [
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "Timestamp when the fact was created"
@@ -36,6 +37,7 @@ main: kit: entity: fact: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       short: "Timestamp when the fact was last updated"
@@ -100,8 +102,10 @@ main: kit: entity: fact: {
           }
           method: "GET"
           orig: "/facts"
-          parts: [
-            "facts"
+          segments: [
+            {
+              lit: "facts"
+            }
           ]
           select: {
             exist: [
@@ -142,9 +146,13 @@ main: kit: entity: fact: {
           }
           method: "GET"
           orig: "/facts/random"
-          parts: [
-            "facts"
-            "random"
+          segments: [
+            {
+              lit: "facts"
+            }
+            {
+              lit: "random"
+            }
           ]
           select: {
             "$action": "random"

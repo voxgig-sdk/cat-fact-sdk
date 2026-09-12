@@ -1,6 +1,14 @@
 # CatFact SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -57,6 +65,7 @@ def make_config():
       "fact": {
         "fields": [
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "Timestamp when the fact was created",
             "type": "`$STRING`",
@@ -85,6 +94,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "updatedAt",
             "short": "Timestamp when the fact was last updated",
             "type": "`$STRING`",
@@ -110,6 +120,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "fact",
         "op": {
           "list": {
@@ -138,8 +152,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/facts",
-                "parts": [
-                  "facts",
+                "segments": [
+                  {
+                    "lit": "facts",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -151,6 +167,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "facts",
+                ],
               },
             ],
           },
@@ -180,9 +199,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/facts/random",
-                "parts": [
-                  "facts",
-                  "random",
+                "segments": [
+                  {
+                    "lit": "facts",
+                  },
+                  {
+                    "lit": "random",
+                  },
                 ],
                 "select": {
                   "$action": "random",
@@ -195,6 +218,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "facts",
+                  "random",
+                ],
               },
             ],
           },
@@ -206,11 +233,13 @@ def make_config():
       "user": {
         "fields": [
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "Timestamp when the user account was created",
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "email",
             "short": "User's email address",
             "type": "`$STRING`",
@@ -226,11 +255,16 @@ def make_config():
             "type": "`$OBJECT`",
           },
           {
+            "format": "date-time",
             "name": "updatedAt",
             "short": "Timestamp when the user account was last updated",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "user",
         "op": {
           "list": {
@@ -242,14 +276,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/users",
-                "parts": [
-                  "users",
+                "segments": [
+                  {
+                    "lit": "users",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "users",
+                ],
               },
             ],
           },

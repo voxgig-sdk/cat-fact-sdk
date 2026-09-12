@@ -62,6 +62,7 @@ class CatFactConfig
         'fact' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'createdAt',
               'short' => 'Timestamp when the fact was created',
               'type' => '`$STRING`',
@@ -90,6 +91,7 @@ class CatFactConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'updatedAt',
               'short' => 'Timestamp when the fact was last updated',
               'type' => '`$STRING`',
@@ -114,6 +116,10 @@ class CatFactConfig
               'short' => 'Whether the current user has upvoted this fact',
               'type' => '`$BOOLEAN`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'fact',
           'op' => [
@@ -143,8 +149,10 @@ class CatFactConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/facts',
-                  'parts' => [
-                    'facts',
+                  'segments' => [
+                    [
+                      'lit' => 'facts',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -155,6 +163,9 @@ class CatFactConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'facts',
                   ],
                 ],
               ],
@@ -185,9 +196,13 @@ class CatFactConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/facts/random',
-                  'parts' => [
-                    'facts',
-                    'random',
+                  'segments' => [
+                    [
+                      'lit' => 'facts',
+                    ],
+                    [
+                      'lit' => 'random',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'random',
@@ -200,6 +215,10 @@ class CatFactConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'facts',
+                    'random',
+                  ],
                 ],
               ],
             ],
@@ -211,11 +230,13 @@ class CatFactConfig
         'user' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'createdAt',
               'short' => 'Timestamp when the user account was created',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'email',
               'name' => 'email',
               'short' => 'User\'s email address',
               'type' => '`$STRING`',
@@ -231,10 +252,15 @@ class CatFactConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'updatedAt',
               'short' => 'Timestamp when the user account was last updated',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'user',
           'op' => [
@@ -247,13 +273,18 @@ class CatFactConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/users',
-                  'parts' => [
-                    'users',
+                  'segments' => [
+                    [
+                      'lit' => 'users',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'users',
                   ],
                 ],
               ],

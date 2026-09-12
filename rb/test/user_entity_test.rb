@@ -118,7 +118,7 @@ def user_basic_setup(extra)
     "CAT_FACT_TEST_USER_ENTID" => idmap,
     "CAT_FACT_TEST_LIVE" => "FALSE",
     "CAT_FACT_TEST_EXPLAIN" => "FALSE",
-    "CAT_FACT_APIKEY" => "NONE",
+    "CAT_FACT_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -129,6 +129,9 @@ def user_basic_setup(extra)
 
   if env["CAT_FACT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["CAT_FACT_APIKEY"],
       },

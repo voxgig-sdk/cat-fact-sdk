@@ -68,15 +68,17 @@ function user_direct_setup($mockres)
     $env = Runner::env_override([
         "CAT_FACT_TEST_USER_ENTID" => [],
         "CAT_FACT_TEST_LIVE" => "FALSE",
-        "CAT_FACT_APIKEY" => "NONE",
+        "CAT_FACT_APIKEY" => "",
     ]);
 
     $live = $env["CAT_FACT_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["CAT_FACT_APIKEY"],
-        ];
+        ]);
         $client = new CatFactSDK($merged_opts);
         return [
             "client" => $client,
