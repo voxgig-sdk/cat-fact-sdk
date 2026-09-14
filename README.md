@@ -105,7 +105,7 @@ local results, err = client:Fact():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
+| TypeScript | `@voxgig-sdk/cat-fact-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
 | Python | `voxgig-sdk-cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
 | PHP | `voxgig-sdk/cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/cat-fact-sdk/go` | `go get github.com/voxgig-sdk/cat-fact-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Fact():list()
 ### TypeScript
 
 ```ts
-import { CatFactSDK } from '@voxgig-sdk/cat-fact'
+import { CatFactSDK } from '@voxgig-sdk/cat-fact-sdk'
 
 const client = new CatFactSDK({
   apikey: process.env.CAT_FACT_APIKEY,

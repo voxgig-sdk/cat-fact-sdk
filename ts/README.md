@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { CatFactSDK } from '@voxgig-sdk/cat-fact'
+import { CatFactSDK } from '@voxgig-sdk/cat-fact-sdk'
 
 const client = new CatFactSDK({
   apikey: process.env.CAT_FACT_APIKEY,
@@ -491,7 +491,7 @@ cat-fact/
 Import the SDK from the package root:
 
 ```ts
-import { CatFactSDK } from '@voxgig-sdk/cat-fact'
+import { CatFactSDK } from '@voxgig-sdk/cat-fact-sdk'
 ```
 
 ### Entity state
