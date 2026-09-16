@@ -4,7 +4,10 @@ declare(strict_types=1);
 // CatFact SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class CatFactFeatures
@@ -14,8 +17,14 @@ class CatFactFeatures
         switch ($name) {
             case "base":
                 return new CatFactBaseFeature();
+            case "ratelimit":
+                return new CatFactRatelimitFeature();
+            case "retry":
+                return new CatFactRetryFeature();
             case "test":
                 return new CatFactTestFeature();
+            case "timeout":
+                return new CatFactTimeoutFeature();
             default:
                 return new CatFactBaseFeature();
         }
@@ -31,7 +40,10 @@ class CatFactFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

@@ -50,6 +50,12 @@ main: kit: entity: user: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /users"
+            json: "{\"operationId\":\"getUsers\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"A user of the Cat Facts site\",\"properties\":{\"_id\":{\"description\":\"Unique identifier for the user\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp when the user account was created\",\"format\":\"date-time\",\"type\":\"string\"},\"email\":{\"description\":\"User's email address\",\"format\":\"email\",\"type\":\"string\"},\"name\":{\"properties\":{\"first\":{\"description\":\"User's first name\",\"type\":\"string\"},\"last\":{\"description\":\"User's last name\",\"type\":\"string\"}},\"type\":\"object\"},\"updatedAt\":{\"description\":\"Timestamp when the user account was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"required\":[\"_id\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with user data\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"cookieAuth\":[]}],\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie authentication. Requires logging in manually on the website.\",\"in\":\"cookie\",\"name\":\"connect.sid\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/users"
           segments: [

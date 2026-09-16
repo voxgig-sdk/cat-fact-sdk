@@ -100,6 +100,12 @@ main: kit: entity: fact: {
               }
             ]
           }
+          contract: {
+            id: "GET /facts"
+            json: "{\"operationId\":\"getFacts\",\"parameters\":[{\"description\":\"Filter facts by animal type\",\"in\":\"query\",\"name\":\"animal_type\",\"required\":false,\"schema\":{\"default\":\"cat\",\"type\":\"string\"}},{\"description\":\"Number of facts to return\",\"in\":\"query\",\"name\":\"amount\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"An animal fact\",\"properties\":{\"_id\":{\"description\":\"Unique identifier for the fact\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp when the fact was created\",\"format\":\"date-time\",\"type\":\"string\"},\"deleted\":{\"description\":\"Whether the fact has been deleted\",\"type\":\"boolean\"},\"text\":{\"description\":\"The fact text content\",\"type\":\"string\"},\"type\":{\"description\":\"The type of animal the fact is about\",\"example\":\"cat\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp when the fact was last updated\",\"format\":\"date-time\",\"type\":\"string\"},\"upvotes\":{\"description\":\"Number of upvotes the fact has received\",\"type\":\"integer\"},\"used\":{\"description\":\"Whether the fact has been used\",\"type\":\"boolean\"},\"user\":{\"description\":\"User ID who submitted the fact\",\"type\":\"string\"},\"userUpvoted\":{\"description\":\"Whether the current user has upvoted this fact\",\"type\":\"boolean\"}},\"required\":[\"_id\",\"text\",\"type\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with cat facts\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie authentication. Requires logging in manually on the website.\",\"in\":\"cookie\",\"name\":\"connect.sid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/facts"
           segments: [
@@ -143,6 +149,12 @@ main: kit: entity: fact: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /facts/random"
+            json: "{\"operationId\":\"getRandomFact\",\"parameters\":[{\"description\":\"Filter facts by animal type\",\"in\":\"query\",\"name\":\"animal_type\",\"required\":false,\"schema\":{\"default\":\"cat\",\"type\":\"string\"}},{\"description\":\"Number of facts to return\",\"in\":\"query\",\"name\":\"amount\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An animal fact\",\"properties\":{\"_id\":{\"description\":\"Unique identifier for the fact\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp when the fact was created\",\"format\":\"date-time\",\"type\":\"string\"},\"deleted\":{\"description\":\"Whether the fact has been deleted\",\"type\":\"boolean\"},\"text\":{\"description\":\"The fact text content\",\"type\":\"string\"},\"type\":{\"description\":\"The type of animal the fact is about\",\"example\":\"cat\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp when the fact was last updated\",\"format\":\"date-time\",\"type\":\"string\"},\"upvotes\":{\"description\":\"Number of upvotes the fact has received\",\"type\":\"integer\"},\"used\":{\"description\":\"Whether the fact has been used\",\"type\":\"boolean\"},\"user\":{\"description\":\"User ID who submitted the fact\",\"type\":\"string\"},\"userUpvoted\":{\"description\":\"Whether the current user has upvoted this fact\",\"type\":\"boolean\"}},\"required\":[\"_id\",\"text\",\"type\"],\"type\":\"object\"}}},\"description\":\"Successful response with random cat fact(s)\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie authentication. Requires logging in manually on the website.\",\"in\":\"cookie\",\"name\":\"connect.sid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/facts/random"
