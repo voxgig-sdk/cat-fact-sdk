@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://cat-fact.herokuapp.com",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "cookie",
+				"name": "connect.sid",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

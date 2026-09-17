@@ -77,6 +77,8 @@ local function make_config()
       base = "https://cat-fact.herokuapp.com",
       auth = {
         prefix = "",
+        ["in"] = "cookie",
+        name = "connect.sid",
       },
       headers = {
         ["content-type"] = "application/json",

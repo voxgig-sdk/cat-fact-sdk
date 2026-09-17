@@ -123,6 +123,8 @@ class Config {
 
     auth: {
       prefix: '',
+      in: 'cookie',
+      name: 'connect.sid',
     },
 
     headers: {
@@ -131,12 +133,12 @@ class Config {
 
     entity: {
       
-      fact: {
-      },
-
-      user: {
-      },
-
+        fact: {
+        },
+  
+        user: {
+        },
+  
     }
   }
 

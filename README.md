@@ -105,12 +105,12 @@ local results, err = client:Fact():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/cat-fact-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
-| Python | `voxgig-sdk-cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
-| PHP | `voxgig-sdk/cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
+| TypeScript | `@voxgig-sdk/cat-fact-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/tags) |
+| Python | `voxgig-sdk-cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/tags) |
+| PHP | `voxgig-sdk/cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/cat-fact-sdk/go` | `go get github.com/voxgig-sdk/cat-fact-sdk/go@latest` |
-| Ruby | `voxgig-sdk-cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
-| Lua | `voxgig-sdk-cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/releases) |
+| Ruby | `voxgig-sdk-cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/tags) |
+| Lua | `voxgig-sdk-cat-fact` | publish pending — [install from git tag](https://github.com/voxgig-sdk/cat-fact-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/cat-fact-sdk/go-cli` | `go install github.com/voxgig-sdk/cat-fact-sdk/go-cli/cmd/cat-fact@latest` |
 | Go MCP server | `github.com/voxgig-sdk/cat-fact-sdk/go-mcp` | `go get github.com/voxgig-sdk/cat-fact-sdk/go-mcp@latest` |
 
