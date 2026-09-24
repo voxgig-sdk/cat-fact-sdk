@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const CatFactEntityBase_1 = require("../CatFactEntityBase");
-// TODO: needs Entity superclass
 class UserEntity extends CatFactEntityBase_1.CatFactEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

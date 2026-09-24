@@ -1,0 +1,195 @@
+# Entity: fact
+
+main: kit: entity: fact: {
+
+  alias: field: {}
+
+  fields: {
+    createdAt: {
+      fo: "date-time"
+      h: "Created At"
+      n: "createdAt"
+      r: false
+      sh: "Timestamp when the fact was created"
+      t: "`$STRING`"
+    }
+    deleted: {
+      h: "Deleted"
+      n: "deleted"
+      r: false
+      sh: "Whether the fact has been deleted"
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Unique identifier for the fact"
+      t: "`$STRING`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: true
+      sh: "The fact text content"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "The type of animal the fact is about"
+      t: "`$STRING`"
+    }
+    updatedAt: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updatedAt"
+      r: false
+      sh: "Timestamp when the fact was last updated"
+      t: "`$STRING`"
+    }
+    upvotes: {
+      h: "Upvotes"
+      n: "upvotes"
+      r: false
+      sh: "Number of upvotes the fact has received"
+      t: "`$INTEGER`"
+    }
+    used: {
+      h: "Used"
+      n: "used"
+      r: false
+      sh: "Whether the fact has been used"
+      t: "`$BOOLEAN`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      sh: "User ID who submitted the fact"
+      t: "`$STRING`"
+    }
+    userUpvoted: {
+      h: "User Upvoted"
+      n: "userUpvoted"
+      r: false
+      sh: "Whether the current user has upvoted this fact"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "fact"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /facts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "amount"
+                or: "amount"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "cat"
+                k: "query"
+                n: "animal_type"
+                or: "animal_type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/facts"
+          q: {
+            exist: [
+              "amount"
+              "animal_type"
+            ]
+          }
+          s: [
+            {
+              lit: "facts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /facts/random"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "amount"
+                or: "amount"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "cat"
+                k: "query"
+                n: "animal_type"
+                or: "animal_type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/facts/random"
+          q: {
+            "$action": "random"
+            exist: [
+              "amount"
+              "animal_type"
+            ]
+          }
+          s: [
+            {
+              lit: "facts"
+            }
+            {
+              lit: "random"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

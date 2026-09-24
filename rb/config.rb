@@ -104,59 +104,69 @@ module CatFactConfig
         "fact" => {
           "fields" => [
             {
-              "format" => "date-time",
               "name" => "createdAt",
-              "short" => "Timestamp when the fact was created",
+              "title" => "Created At",
               "type" => "`$STRING`",
+              "short" => "Timestamp when the fact was created",
+              "format" => "date-time",
             },
             {
               "name" => "deleted",
-              "short" => "Whether the fact has been deleted",
+              "title" => "Deleted",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether the fact has been deleted",
             },
             {
               "name" => "id",
+              "title" => "Id",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Unique identifier for the fact",
-              "type" => "`$STRING`",
             },
             {
               "name" => "text",
+              "title" => "Text",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "The fact text content",
-              "type" => "`$STRING`",
             },
             {
               "name" => "type",
+              "title" => "Type",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "The type of animal the fact is about",
-              "type" => "`$STRING`",
             },
             {
-              "format" => "date-time",
               "name" => "updatedAt",
-              "short" => "Timestamp when the fact was last updated",
+              "title" => "Updated At",
               "type" => "`$STRING`",
+              "short" => "Timestamp when the fact was last updated",
+              "format" => "date-time",
             },
             {
               "name" => "upvotes",
-              "short" => "Number of upvotes the fact has received",
+              "title" => "Upvotes",
               "type" => "`$INTEGER`",
+              "short" => "Number of upvotes the fact has received",
             },
             {
               "name" => "used",
-              "short" => "Whether the fact has been used",
+              "title" => "Used",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether the fact has been used",
             },
             {
               "name" => "user",
-              "short" => "User ID who submitted the fact",
+              "title" => "User",
               "type" => "`$STRING`",
+              "short" => "User ID who submitted the fact",
             },
             {
               "name" => "userUpvoted",
-              "short" => "Whether the current user has upvoted this fact",
+              "title" => "User Upvoted",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether the current user has upvoted this fact",
             },
           ],
           "id" => {
@@ -170,24 +180,6 @@ module CatFactConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "amount",
-                        "orig" => "amount",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => "cat",
-                        "kind" => "query",
-                        "name" => "animal_type",
-                        "orig" => "animal_type",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/facts",
@@ -196,19 +188,38 @@ module CatFactConfig
                       "lit" => "facts",
                     },
                   ],
+                  "parts" => [
+                    "facts",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "amount",
+                        "orig" => "amount",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                      {
+                        "name" => "animal_type",
+                        "orig" => "animal_type",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "cat",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "amount",
                       "animal_type",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "facts",
-                  ],
                 },
               ],
             },
@@ -217,24 +228,6 @@ module CatFactConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "amount",
-                        "orig" => "amount",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => "cat",
-                        "kind" => "query",
-                        "name" => "animal_type",
-                        "orig" => "animal_type",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/facts/random",
@@ -246,6 +239,33 @@ module CatFactConfig
                       "lit" => "random",
                     },
                   ],
+                  "parts" => [
+                    "facts",
+                    "random",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "amount",
+                        "orig" => "amount",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                      {
+                        "name" => "animal_type",
+                        "orig" => "animal_type",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "cat",
+                      },
+                    ],
+                  },
                   "select" => {
                     "$action" => "random",
                     "exist" => [
@@ -253,14 +273,6 @@ module CatFactConfig
                       "animal_type",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "facts",
-                    "random",
-                  ],
                 },
               ],
             },
@@ -272,32 +284,37 @@ module CatFactConfig
         "user" => {
           "fields" => [
             {
-              "format" => "date-time",
               "name" => "createdAt",
-              "short" => "Timestamp when the user account was created",
+              "title" => "Created At",
               "type" => "`$STRING`",
+              "short" => "Timestamp when the user account was created",
+              "format" => "date-time",
             },
             {
-              "format" => "email",
               "name" => "email",
-              "short" => "User's email address",
+              "title" => "Email",
               "type" => "`$STRING`",
+              "short" => "User's email address",
+              "format" => "email",
             },
             {
               "name" => "id",
+              "title" => "Id",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Unique identifier for the user",
-              "type" => "`$STRING`",
             },
             {
               "name" => "name",
+              "title" => "Name",
               "type" => "`$OBJECT`",
             },
             {
-              "format" => "date-time",
               "name" => "updatedAt",
-              "short" => "Timestamp when the user account was last updated",
+              "title" => "Updated At",
               "type" => "`$STRING`",
+              "short" => "Timestamp when the user account was last updated",
+              "format" => "date-time",
             },
           ],
           "id" => {
@@ -311,7 +328,6 @@ module CatFactConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/users",
@@ -320,14 +336,16 @@ module CatFactConfig
                       "lit" => "users",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "users",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "users",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },

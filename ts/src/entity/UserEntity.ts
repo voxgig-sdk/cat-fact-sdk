@@ -19,7 +19,6 @@ import type {
   UserListMatch,
 } from '../CatFactTypes'
 
-// TODO: needs Entity superclass
 class UserEntity extends CatFactEntityBase<User> {
 
   constructor(client: CatFactSDK, entopts: any) {

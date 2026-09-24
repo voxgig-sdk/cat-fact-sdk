@@ -1,0 +1,40 @@
+# BasicFactFlow
+
+main: kit: flow: BasicFactFlow:
+{
+  entity: "fact",
+  kind: "basic",
+  name: "BasicFactFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "fact_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "fact_ref01",
+        srcdatavar: "fact_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-fact_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicFactFlow"
+}

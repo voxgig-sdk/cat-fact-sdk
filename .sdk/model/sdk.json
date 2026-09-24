@@ -24,86 +24,162 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "fact": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "createdAt",
-              "req": false,
-              "short": "Timestamp when the fact was created",
-              "type": "`$STRING`"
+          "fields": {
+            "createdAt": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Created At",
+              "n": "createdAt",
+              "r": false,
+              "sh": "Timestamp when the fact was created",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "deleted",
-              "req": false,
-              "short": "Whether the fact has been deleted",
-              "type": "`$BOOLEAN`"
+            "deleted": {
+              "a": true,
+              "h": "Deleted",
+              "n": "deleted",
+              "r": false,
+              "sh": "Whether the fact has been deleted",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": true,
-              "short": "Unique identifier for the fact",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "Unique identifier for the fact",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "text",
-              "req": true,
-              "short": "The fact text content",
-              "type": "`$STRING`"
+            "text": {
+              "a": true,
+              "h": "Text",
+              "n": "text",
+              "r": true,
+              "sh": "The fact text content",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": true,
-              "short": "The type of animal the fact is about",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": true,
+              "sh": "The type of animal the fact is about",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "updatedAt",
-              "req": false,
-              "short": "Timestamp when the fact was last updated",
-              "type": "`$STRING`"
+            "updatedAt": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Updated At",
+              "n": "updatedAt",
+              "r": false,
+              "sh": "Timestamp when the fact was last updated",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "upvotes",
-              "req": false,
-              "short": "Number of upvotes the fact has received",
-              "type": "`$INTEGER`"
+            "upvotes": {
+              "a": true,
+              "h": "Upvotes",
+              "n": "upvotes",
+              "r": false,
+              "sh": "Number of upvotes the fact has received",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "used",
-              "req": false,
-              "short": "Whether the fact has been used",
-              "type": "`$BOOLEAN`"
+            "used": {
+              "a": true,
+              "h": "Used",
+              "n": "used",
+              "r": false,
+              "sh": "Whether the fact has been used",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "user",
-              "req": false,
-              "short": "User ID who submitted the fact",
-              "type": "`$STRING`"
+            "user": {
+              "a": true,
+              "h": "User",
+              "n": "user",
+              "r": false,
+              "sh": "User ID who submitted the fact",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "userUpvoted",
-              "req": false,
-              "short": "Whether the current user has upvoted this fact",
-              "type": "`$BOOLEAN`"
+            "userUpvoted": {
+              "a": true,
+              "h": "User Upvoted",
+              "n": "userUpvoted",
+              "r": false,
+              "sh": "Whether the current user has upvoted this fact",
+              "t": "`$BOOLEAN`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -115,50 +191,50 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /facts",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "amount",
-                        "orig": "amount",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "amount",
+                        "or": "amount",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": "cat",
-                        "kind": "query",
-                        "name": "animal_type",
-                        "orig": "animal_type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "cat",
+                        "k": "query",
+                        "n": "animal_type",
+                        "or": "animal_type",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /facts",
-                    "json": "{\"operationId\":\"getFacts\",\"parameters\":[{\"description\":\"Filter facts by animal type\",\"in\":\"query\",\"name\":\"animal_type\",\"required\":false,\"schema\":{\"default\":\"cat\",\"type\":\"string\"}},{\"description\":\"Number of facts to return\",\"in\":\"query\",\"name\":\"amount\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"An animal fact\",\"properties\":{\"_id\":{\"description\":\"Unique identifier for the fact\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp when the fact was created\",\"format\":\"date-time\",\"type\":\"string\"},\"deleted\":{\"description\":\"Whether the fact has been deleted\",\"type\":\"boolean\"},\"text\":{\"description\":\"The fact text content\",\"type\":\"string\"},\"type\":{\"description\":\"The type of animal the fact is about\",\"example\":\"cat\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp when the fact was last updated\",\"format\":\"date-time\",\"type\":\"string\"},\"upvotes\":{\"description\":\"Number of upvotes the fact has received\",\"type\":\"integer\"},\"used\":{\"description\":\"Whether the fact has been used\",\"type\":\"boolean\"},\"user\":{\"description\":\"User ID who submitted the fact\",\"type\":\"string\"},\"userUpvoted\":{\"description\":\"Whether the current user has upvoted this fact\",\"type\":\"boolean\"}},\"required\":[\"_id\",\"text\",\"type\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with cat facts\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie authentication. Requires logging in manually on the website.\",\"in\":\"cookie\",\"name\":\"connect.sid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/facts",
-                  "segments": [
-                    {
-                      "lit": "facts"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/facts",
+                  "q": {
                     "exist": [
                       "amount",
                       "animal_type"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "facts"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -170,39 +246,46 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /facts/random",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "amount",
-                        "orig": "amount",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "amount",
+                        "or": "amount",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": "cat",
-                        "kind": "query",
-                        "name": "animal_type",
-                        "orig": "animal_type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "cat",
+                        "k": "query",
+                        "n": "animal_type",
+                        "or": "animal_type",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /facts/random",
-                    "json": "{\"operationId\":\"getRandomFact\",\"parameters\":[{\"description\":\"Filter facts by animal type\",\"in\":\"query\",\"name\":\"animal_type\",\"required\":false,\"schema\":{\"default\":\"cat\",\"type\":\"string\"}},{\"description\":\"Number of facts to return\",\"in\":\"query\",\"name\":\"amount\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An animal fact\",\"properties\":{\"_id\":{\"description\":\"Unique identifier for the fact\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp when the fact was created\",\"format\":\"date-time\",\"type\":\"string\"},\"deleted\":{\"description\":\"Whether the fact has been deleted\",\"type\":\"boolean\"},\"text\":{\"description\":\"The fact text content\",\"type\":\"string\"},\"type\":{\"description\":\"The type of animal the fact is about\",\"example\":\"cat\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp when the fact was last updated\",\"format\":\"date-time\",\"type\":\"string\"},\"upvotes\":{\"description\":\"Number of upvotes the fact has received\",\"type\":\"integer\"},\"used\":{\"description\":\"Whether the fact has been used\",\"type\":\"boolean\"},\"user\":{\"description\":\"User ID who submitted the fact\",\"type\":\"string\"},\"userUpvoted\":{\"description\":\"Whether the current user has upvoted this fact\",\"type\":\"boolean\"}},\"required\":[\"_id\",\"text\",\"type\"],\"type\":\"object\"}}},\"description\":\"Successful response with random cat fact(s)\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie authentication. Requires logging in manually on the website.\",\"in\":\"cookie\",\"name\":\"connect.sid\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/facts/random",
+                  "q": {
+                    "$action": "random",
+                    "exist": [
+                      "amount",
+                      "animal_type"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/facts/random",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "facts"
                     },
@@ -210,14 +293,7 @@
                       "lit": "random"
                     }
                   ],
-                  "select": {
-                    "$action": "random",
-                    "exist": [
-                      "amount",
-                      "animal_type"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -234,45 +310,50 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "createdAt",
-              "req": false,
-              "short": "Timestamp when the user account was created",
-              "type": "`$STRING`"
+          "fields": {
+            "createdAt": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Created At",
+              "n": "createdAt",
+              "r": false,
+              "sh": "Timestamp when the user account was created",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "email",
-              "name": "email",
-              "req": false,
-              "short": "User's email address",
-              "type": "`$STRING`"
+            "email": {
+              "a": true,
+              "fo": "email",
+              "h": "Email",
+              "n": "email",
+              "r": false,
+              "sh": "User's email address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": true,
-              "short": "Unique identifier for the user",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "Unique identifier for the user",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$OBJECT`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "updatedAt",
-              "req": false,
-              "short": "Timestamp when the user account was last updated",
-              "type": "`$STRING`"
+            "updatedAt": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Updated At",
+              "n": "updatedAt",
+              "r": false,
+              "sh": "Timestamp when the user account was last updated",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -284,24 +365,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /users",
-                    "json": "{\"operationId\":\"getUsers\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"A user of the Cat Facts site\",\"properties\":{\"_id\":{\"description\":\"Unique identifier for the user\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp when the user account was created\",\"format\":\"date-time\",\"type\":\"string\"},\"email\":{\"description\":\"User's email address\",\"format\":\"email\",\"type\":\"string\"},\"name\":{\"properties\":{\"first\":{\"description\":\"User's first name\",\"type\":\"string\"},\"last\":{\"description\":\"User's last name\",\"type\":\"string\"}},\"type\":\"object\"},\"updatedAt\":{\"description\":\"Timestamp when the user account was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"required\":[\"_id\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with user data\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error response\",\"properties\":{\"message\":{\"description\":\"Error message\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"cookieAuth\":[]}],\"securitySchemes\":{\"cookieAuth\":{\"description\":\"Session cookie authentication. Requires logging in manually on the website.\",\"in\":\"cookie\",\"name\":\"connect.sid\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/users",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/users",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "users"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -730,13 +811,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -746,17 +827,17 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "fact_ref01",
                 "srcdatavar": "fact_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -776,13 +857,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -147,59 +140,69 @@ class Config {
     "fact": {
       "fields": [
         {
-          "format": "date-time",
           "name": "createdAt",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "Timestamp when the fact was created",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "deleted",
-          "short": "Whether the fact has been deleted",
-          "type": "`$BOOLEAN`"
+          "title": "Deleted",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the fact has been deleted"
         },
         {
           "name": "id",
+          "title": "Id",
+          "type": "`$STRING`",
           "req": true,
-          "short": "Unique identifier for the fact",
-          "type": "`$STRING`"
+          "short": "Unique identifier for the fact"
         },
         {
           "name": "text",
+          "title": "Text",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The fact text content",
-          "type": "`$STRING`"
+          "short": "The fact text content"
         },
         {
           "name": "type",
+          "title": "Type",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The type of animal the fact is about",
-          "type": "`$STRING`"
+          "short": "The type of animal the fact is about"
         },
         {
-          "format": "date-time",
           "name": "updatedAt",
+          "title": "Updated At",
+          "type": "`$STRING`",
           "short": "Timestamp when the fact was last updated",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "upvotes",
-          "short": "Number of upvotes the fact has received",
-          "type": "`$INTEGER`"
+          "title": "Upvotes",
+          "type": "`$INTEGER`",
+          "short": "Number of upvotes the fact has received"
         },
         {
           "name": "used",
-          "short": "Whether the fact has been used",
-          "type": "`$BOOLEAN`"
+          "title": "Used",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the fact has been used"
         },
         {
           "name": "user",
-          "short": "User ID who submitted the fact",
-          "type": "`$STRING`"
+          "title": "User",
+          "type": "`$STRING`",
+          "short": "User ID who submitted the fact"
         },
         {
           "name": "userUpvoted",
-          "short": "Whether the current user has upvoted this fact",
-          "type": "`$BOOLEAN`"
+          "title": "User Upvoted",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the current user has upvoted this fact"
         }
       ],
       "id": {
@@ -213,24 +216,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "amount",
-                    "orig": "amount",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": "cat",
-                    "kind": "query",
-                    "name": "animal_type",
-                    "orig": "animal_type",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/facts",
@@ -239,19 +224,38 @@ class Config {
                   "lit": "facts"
                 }
               ],
+              "parts": [
+                "facts"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "amount",
+                    "orig": "amount",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "animal_type",
+                    "orig": "animal_type",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "cat"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "amount",
                   "animal_type"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "facts"
-              ]
+              }
             }
           ]
         },
@@ -260,24 +264,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "amount",
-                    "orig": "amount",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": "cat",
-                    "kind": "query",
-                    "name": "animal_type",
-                    "orig": "animal_type",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/facts/random",
@@ -289,21 +275,40 @@ class Config {
                   "lit": "random"
                 }
               ],
+              "parts": [
+                "facts",
+                "random"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "amount",
+                    "orig": "amount",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "animal_type",
+                    "orig": "animal_type",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "cat"
+                  }
+                ]
+              },
               "select": {
                 "$action": "random",
                 "exist": [
                   "amount",
                   "animal_type"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "facts",
-                "random"
-              ]
+              }
             }
           ]
         }
@@ -315,32 +320,37 @@ class Config {
     "user": {
       "fields": [
         {
-          "format": "date-time",
           "name": "createdAt",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "Timestamp when the user account was created",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
-          "format": "email",
           "name": "email",
+          "title": "Email",
+          "type": "`$STRING`",
           "short": "User's email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "id",
+          "title": "Id",
+          "type": "`$STRING`",
           "req": true,
-          "short": "Unique identifier for the user",
-          "type": "`$STRING`"
+          "short": "Unique identifier for the user"
         },
         {
           "name": "name",
+          "title": "Name",
           "type": "`$OBJECT`"
         },
         {
-          "format": "date-time",
           "name": "updatedAt",
+          "title": "Updated At",
+          "type": "`$STRING`",
           "short": "Timestamp when the user account was last updated",
-          "type": "`$STRING`"
+          "format": "date-time"
         }
       ],
       "id": {
@@ -354,7 +364,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/users",
@@ -363,14 +372,16 @@ class Config {
                   "lit": "users"
                 }
               ],
-              "select": {},
+              "parts": [
+                "users"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "users"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }

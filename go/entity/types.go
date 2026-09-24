@@ -1,7 +1,7 @@
 // Typed models for the CatFact SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,16 +14,6 @@ import (
 
 // Fact is the typed data model for the fact entity.
 type Fact struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Deleted *bool `json:"deleted,omitempty"`
-	Id string `json:"id"`
-	Text string `json:"text"`
-	Type string `json:"type"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
-	Upvotes *int `json:"upvotes,omitempty"`
-	Used *bool `json:"used,omitempty"`
-	User *string `json:"user,omitempty"`
-	UserUpvoted *bool `json:"userUpvoted,omitempty"`
 }
 
 // FactLoadMatch is the typed request payload for Fact.LoadTyped.
@@ -40,11 +30,6 @@ type FactListMatch struct {
 
 // User is the typed data model for the user entity.
 type User struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Id string `json:"id"`
-	Name *map[string]any `json:"name,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
 }
 
 // UserListMatch is the typed request payload for User.ListTyped.

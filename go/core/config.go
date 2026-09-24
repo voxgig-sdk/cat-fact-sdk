@@ -96,59 +96,69 @@ func MakeConfig() map[string]any {
 			"fact": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "createdAt",
-						"short": "Timestamp when the fact was created",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"short": "Timestamp when the fact was created",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "deleted",
-						"short": "Whether the fact has been deleted",
+						"title": "Deleted",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the fact has been deleted",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the fact",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "text",
+						"title": "Text",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The fact text content",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"title": "Type",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The type of animal the fact is about",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "updatedAt",
-						"short": "Timestamp when the fact was last updated",
+						"title": "Updated At",
 						"type": "`$STRING`",
+						"short": "Timestamp when the fact was last updated",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "upvotes",
-						"short": "Number of upvotes the fact has received",
+						"title": "Upvotes",
 						"type": "`$INTEGER`",
+						"short": "Number of upvotes the fact has received",
 					},
 					map[string]any{
 						"name": "used",
-						"short": "Whether the fact has been used",
+						"title": "Used",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the fact has been used",
 					},
 					map[string]any{
 						"name": "user",
-						"short": "User ID who submitted the fact",
+						"title": "User",
 						"type": "`$STRING`",
+						"short": "User ID who submitted the fact",
 					},
 					map[string]any{
 						"name": "userUpvoted",
-						"short": "Whether the current user has upvoted this fact",
+						"title": "User Upvoted",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the current user has upvoted this fact",
 					},
 				},
 				"id": map[string]any{
@@ -162,24 +172,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "amount",
-											"orig": "amount",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "cat",
-											"kind": "query",
-											"name": "animal_type",
-											"orig": "animal_type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/facts",
@@ -188,18 +180,37 @@ func MakeConfig() map[string]any {
 										"lit": "facts",
 									},
 								},
+								"parts": []any{
+									"facts",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "amount",
+											"orig": "amount",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "animal_type",
+											"orig": "animal_type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "cat",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"amount",
 										"animal_type",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"facts",
 								},
 							},
 						},
@@ -209,24 +220,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "amount",
-											"orig": "amount",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "cat",
-											"kind": "query",
-											"name": "animal_type",
-											"orig": "animal_type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/facts/random",
@@ -238,20 +231,39 @@ func MakeConfig() map[string]any {
 										"lit": "random",
 									},
 								},
+								"parts": []any{
+									"facts",
+									"random",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "amount",
+											"orig": "amount",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "animal_type",
+											"orig": "animal_type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "cat",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "random",
 									"exist": []any{
 										"amount",
 										"animal_type",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"facts",
-									"random",
 								},
 							},
 						},
@@ -264,32 +276,37 @@ func MakeConfig() map[string]any {
 			"user": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "createdAt",
-						"short": "Timestamp when the user account was created",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"short": "Timestamp when the user account was created",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "email",
-						"short": "User's email address",
+						"title": "Email",
 						"type": "`$STRING`",
+						"short": "User's email address",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the user",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "updatedAt",
-						"short": "Timestamp when the user account was last updated",
+						"title": "Updated At",
 						"type": "`$STRING`",
+						"short": "Timestamp when the user account was last updated",
+						"format": "date-time",
 					},
 				},
 				"id": map[string]any{
@@ -303,7 +320,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/users",
@@ -312,14 +328,16 @@ func MakeConfig() map[string]any {
 										"lit": "users",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"users",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"users",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

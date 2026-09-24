@@ -45,7 +45,7 @@ local facts, err = client:Fact():list()
 if err then error(err) end
 
 for _, item in ipairs(facts) do
-  print(item["id"], item["createdAt"])
+  print(item["id"])
 end
 ```
 
